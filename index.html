@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retail Sales Pro</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Styling System -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Chart.js and jsPDF Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- ==========================================
+       Global Application Header
+       ========================================== -->
+  <header class="app-header">
+    <div class="logo-section">
+      <h1 data-trn="appName">Retail Sales Pro</h1>
+      <span id="portal-badge"></span>
+    </div>
+    
+    <div class="nav-controls">
+      <!-- Language Selection Button (Pill Shaped) -->
+      <button class="lang-pill-btn" id="lang-switch-btn">
+        <i class="fas fa-globe"></i>
+        <span id="lang-switch-text">العربية</span>
+      </button>
+      
+      <!-- Profile/Exit Buttons (Active when inside portals) -->
+      <div id="user-nav-group" style="display: none; align-items: center; gap: 16px;">
+        <button class="user-profile-btn" id="logout-btn" style="display: none;" title="Exit Portal">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+        <button class="user-profile-btn" title="User Profile">
+          <i class="far fa-user-circle"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       1. Portal Selection Screen (Welcome)
+       ========================================== -->
+  <main class="portal-welcome-container" id="welcome-portal">
+    <h2 class="portal-headline" data-trn="welcomeTitle">Welcome to Retail Sales Pro</h2>
+    <p class="portal-sub" data-trn="welcomeSub">Optimize your store performance with data-driven insights. Select your portal to begin.</p>
+    
+    <div class="portal-cards-grid">
+      <!-- Guest/Staff Entrance Card -->
+      <div class="portal-card" id="btn-guest-access">
+        <div class="portal-card-icon">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <h3 data-trn="guestAccess">Guest Access</h3>
+        <p data-trn="guestDesc">Store staff entryway for the Sales Coach and Visual Auditor tools.</p>
+        <div class="portal-tag-group">
+          <span class="portal-tag" id="btn-quick-sales-coach" data-trn="tagSalesCoach">Sales Coach</span>
+          <span class="portal-tag" id="btn-quick-visual-auditor" data-trn="tagVisualAuditor">Visual Auditor</span>
+        </div>
+      </div>
+      
+      <!-- Store Administrator Card -->
+      <div class="portal-card" id="btn-admin-portal">
+        <div class="portal-card-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3 data-trn="adminPortal">Admin Portal</h3>
+        <p data-trn="adminDesc">Management interface for Knowledge Base and RAG data configuration.</p>
+        <div class="portal-tag-group">
+          <span class="portal-tag" id="btn-quick-kb" data-trn="tagKnowledgeBase">Knowledge Base</span>
+          <span class="portal-tag" id="btn-quick-rag-config" data-trn="tagRagConfig">RAG Config</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       2. Guest Entrance (Coaching & Auditing tools)
+       ========================================== -->
+  <main id="guest-portal" style="display: none; flex-grow: 1;">
+    
+    <!-- Sub-navigation toolbar matching Stitch screenshot -->
+    <div class="sub-nav-bar">
+      <div class="pill-navigation">
+        <button class="pill-tab active" id="tab-voice-coach">
+          <i class="fas fa-microphone"></i>
+          <span data-trn="coachTab">Sales Coach</span>
+        </button>
+        <button class="pill-tab" id="tab-text-coach">
+          <i class="far fa-comment-dots"></i>
+          <span data-trn="textCoachTab">Go to Text coaching</span>
+        </button>
+        <button class="pill-tab" id="tab-visual-auditor">
+          <i class="fas fa-expand-arrows-alt"></i>
+          <span data-trn="auditorTab">Visual Auditor</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Panel A: Sales Coach (Voice activated) -->
+    <div class="coach-container" id="panel-voice-coach" style="display: flex;">
+      <!-- Personality Row Selector -->
+      <div class="personalities-row" id="personalities-row">
+        <!-- Dyn. populated from app.js -->
+      </div>
+      
+      <!-- Big Mic Button with Voice Wave ring indicators -->
+      <div class="mic-circle-outer" id="mic-outer">
+        <div class="wave-ring"></div>
+        <div class="wave-ring"></div>
+        <div class="wave-ring"></div>
+        <div class="mic-circle-inner" id="mic-inner">
+          <i class="fas fa-microphone"></i>
+        </div>
+      </div>
+      
+      <h2 class="coach-headline" id="voice-greeting" data-trn="welcomeCoachGreeting">
+        Hello, I am your coach. How can I guide you today?
+      </h2>
+      <span class="coach-sub" data-trn="voiceTextTitle">VOICE & TEXT COACH</span>
+      
+      <!-- Dynamic Info Box Grid (Tip of the Day + FAQ clicks) -->
+      <div class="coach-cards-grid">
+        <!-- Tip of the Day card -->
+        <div class="coach-card">
+          <div class="card-title-row green">
+            <i class="far fa-lightbulb"></i>
+            <span data-trn="tipOfDay">Tip of the Day</span>
+          </div>
+          <p class="card-italic-quote" data-trn="tipContent">
+            "Always acknowledge customers within 30 seconds of entry to boost conversion by 15%."
+          </p>
+        </div>
+        
+        <!-- Interactive FAQs selector -->
+        <div class="coach-card">
+          <div class="card-title-row purple">
+            <i class="far fa-question-circle"></i>
+            <span data-trn="faqHeader">Frequently Asked Questions</span>
+          </div>
+          
+          <div class="faq-tabs">
+            <button class="faq-tab-btn active" id="faq-tab-customer" data-trn="faqTabCustomer">Customer Qs</button>
+            <button class="faq-tab-btn" id="faq-tab-policy" data-trn="faqTabPolicy">Store Policy</button>
+          </div>
+          
+          <div class="faq-content" id="faq-content-list">
+            <!-- Dyn. loaded based on selection -->
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 32px; text-align: center;">
+        <span class="scan-reference-label" id="voice-status" data-trn="micTapToTalk">Tap microphone to speak to your coach...</span>
+        <h4 style="margin-top: 8px; font-weight: 500;" id="voice-objection-prompt"></h4>
+      </div>
+    </div>
+
+    <!-- Panel B: Sales Coach (Text chat interface) -->
+    <div class="coach-container" id="panel-text-coach" style="display: none;">
+      <h2 class="coach-headline" style="font-size: 22px; margin-bottom: 24px;">
+        <span data-trn="textCoachTab">Text Coach</span> (<span id="text-coach-name">Professional (Kore)</span>)
+      </h2>
+      
+      <!-- Interactive Chat area -->
+      <div class="chat-window">
+        <div class="chat-header">
+          <div class="chat-header-info">
+            <div class="chat-status-dot"></div>
+            <h4>Coach Online</h4>
+          </div>
+          <i class="fas fa-cog text-muted"></i>
+        </div>
+        <div class="chat-body" id="chat-body">
+          <!-- Populated from chatHistory -->
+        </div>
+        <div class="chat-input-row">
+          <button class="chat-mic-btn" id="chat-mic-btn" title="Speak message or record voice note">
+            <i class="fas fa-microphone"></i>
+          </button>
+          <div class="recording-indicator" id="chat-recording-indicator" style="display: none;">
+            <span class="recording-dot"></span>
+            <span id="recording-timer" class="recording-timer">0:00</span>
+          </div>
+          <input type="text" class="chat-input" id="chat-input" data-trn-placeholder="textPlaceholder" placeholder="Type customer query or objection here...">
+          <button class="chat-send-btn" id="chat-send-btn">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Fail-Safe Buttons block -->
+      <div class="fail-safe-container">
+        <span class="fail-safe-label" data-trn="failSafeHeader">Chat Fail-Safe (Quick Objections)</span>
+        <div class="fail-safe-buttons" id="fail-safe-buttons">
+          <!-- Objection items -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel C: Visual Shelf Auditor view -->
+    <div class="auditor-grid" id="panel-visual-auditor" style="display: none;">
+      
+      <!-- Left side Column: Scans uploads and contexts -->
+      <div class="auditor-left-col">
+        <!-- Image scan display box -->
+        <div class="scan-card">
+          <div class="scan-title-row">
+            <h3 data-trn="floorScanActive">Floor Scan Active</h3>
+            <span class="processed-badge" id="processed-tag" style="display: none;" data-trn="processedBadge">PROCESSED</span>
+          </div>
+          
+          <div class="camera-scan-preview" id="preview-box">
+            <!-- Simulated Laser bar -->
+            <div class="scan-laser-line" id="scan-laser"></div>
+            
+            <i class="fas fa-camera camera-placeholder-icon" id="preview-dotted-pattern"></i>
+            <span class="camera-placeholder-desc" id="preview-dotted-desc" data-trn="readyCompliance">Ready for compliance scan</span>
+            
+            <!-- Target image and bounding box rendering canvas -->
+            <img id="img-audit" src="" alt="Shelf Visual">
+            <canvas id="canvas-audit"></canvas>
+          </div>
+          
+          <div class="scan-actions">
+            <button class="scan-btn primary-green" id="btn-take-photo">
+              <i class="fas fa-camera"></i>
+              <span data-trn="takePhoto">Take Photo</span>
+            </button>
+            <button class="scan-btn secondary-white" id="btn-upload-image">
+              <i class="fas fa-upload"></i>
+              <span data-trn="uploadImage">Upload Image</span>
+            </button>
+            <input type="file" id="file-input" style="display: none;" accept="image/*">
+          </div>
+          
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="scan-reference-label" id="scan-ref-label">SCAN_REF_7742.JPG</span>
+            <span class="scan-reference-label" id="scan-status-text" style="color: var(--primary);"></span>
+          </div>
+        </div>
+        
+        <!-- Shelf Context Card -->
+        <div class="scan-card">
+          <h3 style="font-size: 15px; margin-bottom: 16px;" data-trn="contextData">Contextual Data</h3>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; justify-content: space-between; font-size: 13px;">
+              <span class="text-muted" data-trn="storeLocation">Store Location</span>
+              <strong style="color: var(--slate-900);" data-trn="locationValue">Flagship - Downtown</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 13px;">
+              <span class="text-muted" data-trn="department">Department</span>
+              <strong style="color: var(--slate-900);" data-trn="deptValue">Men's Premium Apparel</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 13px;">
+              <span class="text-muted" data-trn="auditFreq">Audit Frequency</span>
+              <strong style="color: var(--primary);" data-trn="freqValue">Bi-Weekly</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right side Column: KPI scores, warning highlights & deep-dives -->
+      <div class="auditor-right-col">
+        <!-- Restock Action Required warning banner -->
+        <div class="action-banner" id="action-required-banner" style="display: none;">
+          <div class="action-banner-icon">
+            <i class="fas fa-exclamation-circle"></i>
+          </div>
+          <div class="action-banner-content">
+            <h4 data-trn="immediateAction">Immediate Action Required</h4>
+            <h3 data-trn="actionTitle">Restock Front-of-House Denim Display</h3>
+            <p data-trn="actionDesc">Stock levels for hero items have fallen below 15%. This shelf is currently underperforming relative to peak-hour footfall expectations.</p>
+          </div>
+        </div>
+        
+        <!-- 3 KPIs Grid Row -->
+        <div class="kpi-row" id="auditor-kpis-row" style="display: none;">
+          <!-- Compliance Adherence KPI -->
+          <div class="kpi-card amber">
+            <div class="kpi-header">
+              <span data-trn="kpiCompliance">Compliance</span>
+              <i class="fas fa-exclamation-triangle orange"></i>
+            </div>
+            <div class="kpi-value" data-trn="valCompliance">75% Adherence</div>
+            <div class="kpi-desc" data-trn="descCompliance">Missing seasonal promotional signage on the secondary island display.</div>
+          </div>
+          
+          <!-- Inventory Outage KPI -->
+          <div class="kpi-card red">
+            <div class="kpi-header">
+              <span data-trn="kpiGap">Inventory Gap</span>
+              <i class="fas fa-minus-circle red"></i>
+            </div>
+            <div class="kpi-value" data-trn="valGap">Critical Outage</div>
+            <div class="kpi-desc" data-trn="descGap">Size 32 Slim Fit Denim completely exhausted from floor view.</div>
+          </div>
+          
+          <!-- Conversion Upsell KPI -->
+          <div class="kpi-card green">
+            <div class="kpi-header">
+              <span data-trn="kpiConversion">Conversion</span>
+              <i class="fas fa-chart-line green"></i>
+            </div>
+            <div class="kpi-value" data-trn="valConversion">Cross-Sell Opt.</div>
+            <div class="kpi-desc" data-trn="descConversion">Placement of Leather Belts currently lacks visibility. Recommend central grouping.</div>
+          </div>
+        </div>
+        
+        <!-- Visual Auditor Deep-dive details -->
+        <div class="scan-card" id="auditor-deep-dive-section" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="font-size: 15px;" data-trn="auditorDeepDive">Visual Auditor Deep-Dive</h3>
+            <button class="lang-pill-btn" id="btn-export-pdf" style="font-size: 11px; padding: 4px 10px;">
+              <i class="fas fa-file-pdf"></i>
+              <span data-trn="exportPdf">Export PDF</span>
+            </button>
+          </div>
+          
+          <div style="display: flex; gap: 24px;">
+            <div style="flex-grow: 1;">
+              <p class="card-italic-quote" style="font-size: 14px; margin-bottom: 24px;" data-trn="deepDiveText">
+                "The current floor plan exhibits high traffic velocity but lacks sufficient 'stopping power' in the mid-section. Our analysis suggests that the color blocking on the denim wall is visually dense, creating cognitive friction for the shopper rather than a clear navigation path."
+              </p>
+              
+              <h4 style="font-size: 11px; font-weight: 700; color: var(--slate-400); letter-spacing: 0.05em; text-transform: uppercase;" data-trn="actionableRec">Actionable Recommendation</h4>
+              <ul class="recommendation-list">
+                <li><i class="far fa-check-circle"></i> <span data-trn="rec1">Implement 'Light-to-Dark' color gradient from aisle entry.</span></li>
+                <li><i class="far fa-check-circle"></i> <span data-trn="rec2">Add 'Lifestyle Imagery' at eye level on Pillar 4.</span></li>
+              </ul>
+            </div>
+            
+            <div class="revenue-lift-box" style="flex-shrink: 0; width: 140px;">
+              <span class="revenue-lift-label" data-trn="estRevenueLift">Est. Revenue Lift</span>
+              <div class="revenue-lift-val" data-trn="revenueLiftVal">+12%</div>
+              <div class="revenue-lift-bar-outer">
+                <div class="revenue-lift-bar-inner"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </main>
+
+  <!-- ==========================================
+       3. Admin Dashboard & Portal Configurations
+       ========================================== -->
+  <main id="admin-portal" class="admin-layout-wrapper" style="display: none;">
+    <!-- Left Navigation Sidebar -->
+    <nav class="admin-sidebar">
+      <div class="admin-sidebar-group">
+        <span class="admin-sidebar-group-title" data-trn="managementGroup">Management</span>
+        
+        <a class="sidebar-nav-item" id="admin-nav-overview">
+          <i class="fas fa-th-large"></i>
+          <span data-trn="menuOverview">Overview</span>
+        </a>
+        
+        <a class="sidebar-nav-item active" id="admin-nav-documents">
+          <i class="far fa-file-alt"></i>
+          <span data-trn="menuDocuments">Documents</span>
+        </a>
+        
+        <a class="sidebar-nav-item" id="admin-nav-training">
+          <i class="fas fa-graduation-cap"></i>
+          <span data-trn="menuTrainingData">Training Data</span>
+        </a>
+        
+        <a class="sidebar-nav-item" id="admin-nav-analytics">
+          <i class="fas fa-chart-pie"></i>
+          <span data-trn="menuAnalytics">Analytics</span>
+        </a>
+        
+        <a class="sidebar-nav-item" id="admin-nav-settings">
+          <i class="fas fa-cog"></i>
+          <span data-trn="menuSettings">Settings</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Right Side Dashboard panes -->
+    <section class="admin-content-pane">
+      
+      <!-- Panel A: Admin Overview Pane -->
+      <div id="admin-pane-overview" style="display: none;">
+        <h2 style="font-size: 24px; margin-bottom: 24px;">Admin Portal Overview</h2>
+        
+        <!-- Key Metrics Cards Row -->
+        <div class="admin-kpis-grid">
+          <div class="admin-kpi-card">
+            <span class="admin-kpi-label" data-trn="totalRecords">Total Records</span>
+            <div class="admin-kpi-row">
+              <div class="admin-kpi-value">1,284</div>
+              <div class="admin-kpi-trend"><i class="fas fa-long-arrow-alt-up"></i> +12%</div>
+            </div>
+          </div>
+          
+          <div class="admin-kpi-card">
+            <span class="admin-kpi-label" data-trn="indexHealth">Index Health</span>
+            <div class="admin-kpi-row" style="flex-direction: column; align-items: flex-start;">
+              <div class="admin-kpi-value">99.4%</div>
+              <div class="admin-latency-gauge" style="width: 100%;"><div class="admin-latency-fill" style="width: 99.4%; background-color: var(--primary);"></div></div>
+            </div>
+          </div>
+          
+          <div class="admin-kpi-card">
+            <span class="admin-kpi-label" data-trn="avgLatency">Avg. Latency</span>
+            <div class="admin-kpi-row">
+              <div class="admin-kpi-value">142ms</div>
+              <i class="fas fa-tachometer-alt text-muted" style="font-size: 20px;"></i>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-muted" style="margin-bottom: 24px;">Quick welcome to the Retail Sales Pro admin portal. Modify training manuals, view Objections analytics, or manage visual audit files from the left-side navigation panel.</p>
+      </div>
+
+      <!-- Panel B: Internal Knowledge Base Documents Table Pane -->
+      <div id="admin-pane-documents" style="display: block;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <div>
+            <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 4px;" data-trn="kbHeader">Internal Knowledge Base</h2>
+            <p class="text-muted" style="font-size: 14px;" data-trn="kbSub">Manage the proprietary data used for RAG coaching insights.</p>
+          </div>
+          <button class="scan-btn primary-green" id="btn-add-doc" style="padding: 10px 20px;">
+            <i class="fas fa-plus"></i>
+            <span data-trn="addDocument">+ Add Document</span>
+          </button>
+        </div>
+
+        <!-- KPI summary row (Documents) -->
+        <div class="admin-kpis-grid">
+          <div class="admin-kpi-card">
+            <span class="admin-kpi-label" data-trn="totalRecords">Total Records</span>
+            <div class="admin-kpi-row">
+              <div class="admin-kpi-value">1,284</div>
+              <div class="admin-kpi-trend"><i class="fas fa-long-arrow-alt-up"></i> +12%</div>
+            </div>
+          </div>
+          
+          <div class="admin-kpi-card">
+            <span class="admin-kpi-label" data-trn="indexHealth">Index Health</span>
+            <div class="admin-kpi-row" style="flex-direction: column; align-items: flex-start;">
+              <div class="admin-kpi-value">99.4%</div>
+              <div class="admin-latency-gauge" style="width: 100%;"><div class="admin-latency-fill" style="width: 99.4%; background-color: var(--primary);"></div></div>
+            </div>
+          </div>
+          
+          <div class="admin-kpi-card">
+            <span class="admin-kpi-label" data-trn="avgLatency">Avg. Latency</span>
+            <div class="admin-kpi-row">
+              <div class="admin-kpi-value">142ms</div>
+              <i class="fas fa-tachometer-alt text-muted" style="font-size: 20px;"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter and Search table wrapper -->
+        <div class="table-box">
+          <div class="table-controls">
+            <div class="table-search-wrapper">
+              <i class="fas fa-search"></i>
+              <input type="text" class="table-search-input" id="table-search" data-trn-placeholder="filterPlaceholder" placeholder="Filter documents...">
+            </div>
+            
+            <div class="table-actions-right">
+              <button class="table-icon-btn"><i class="fas fa-filter"></i></button>
+              <button class="table-icon-btn"><i class="fas fa-download"></i></button>
+            </div>
+          </div>
+
+          <div class="responsive-table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th data-trn="colDocName">Document Name</th>
+                  <th data-trn="colStatus">Status</th>
+                  <th data-trn="colUpdated">Last Updated</th>
+                  <th data-trn="colLanguage">Language</th>
+                  <th data-trn="colActions">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="doc-table-body">
+                <!-- Populated dynamically from adminEngine.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination Bar -->
+          <div class="pagination-controls">
+            <span data-trn="showingEntries">Showing 1 to 4 of 48 entries</span>
+            <div class="pagination-buttons">
+              <button class="page-btn" data-trn="btnPrev">Prev</button>
+              <button class="page-btn active">1</button>
+              <button class="page-btn">2</button>
+              <button class="page-btn">3</button>
+              <button class="page-btn" data-trn="btnNext">Next</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- System Insight Banner Box -->
+        <div class="insight-box" id="system-insight-box">
+          <div class="insight-icon">
+            <i class="far fa-lightbulb"></i>
+          </div>
+          <div class="insight-content">
+            <h4 data-trn="systemInsightTitle">System Insight</h4>
+            <p data-trn="systemInsightDesc">Your Arabic language training set is currently 30% smaller than the English set. Adding more Arabic retail scripts would significantly improve RAG accuracy for your Middle Eastern regional teams.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel C: Training Data Configuration Pane -->
+      <div id="admin-pane-training" style="display: none;">
+        <h2 style="font-size: 24px; margin-bottom: 24px;">RAG Training Datasets</h2>
+        <p class="text-muted">Upload and review raw objection scripts or store manuals directly linked to the Sales Coach responses.</p>
+        
+        <div class="scan-card" style="margin-top: 24px;">
+          <div class="camera-scan-preview" style="height: 180px; border-style: dashed;">
+            <i class="fas fa-cloud-upload-alt camera-placeholder-icon"></i>
+            <span class="camera-placeholder-desc">Drag training catalog CSV/JSON here</span>
+            <span class="camera-placeholder-sub">Max size 50MB</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel D: Analytics Performance Pane (Chart.js renderings) -->
+      <div id="admin-pane-analytics" style="display: none;">
+        <h2 style="font-size: 24px; margin-bottom: 24px;">Coaching Performance & Analytics</h2>
+        
+        <div class="analytics-grid">
+          <!-- Query Volume Line graph -->
+          <div class="chart-card">
+            <h3>Daily Query Volume</h3>
+            <div class="chart-wrapper">
+              <canvas id="chart-volume"></canvas>
+            </div>
+          </div>
+          
+          <!-- Objections breakdown Bar chart -->
+          <div class="chart-card">
+            <h3>Most Common Customer Objections</h3>
+            <div class="chart-wrapper">
+              <canvas id="chart-objections"></canvas>
+            </div>
+          </div>
+          
+          <!-- Personalities usage doughnut chart -->
+          <div class="chart-card" style="grid-column: span 2;">
+            <h3>Coaching Sessions by Personality</h3>
+            <div class="chart-wrapper" style="height: 240px; display: flex; justify-content: center;">
+              <canvas id="chart-personalities" style="max-width: 400px;"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel E: Settings Pane -->
+      <div id="admin-pane-settings" style="display: none;">
+        <h2 style="font-size: 24px; margin-bottom: 24px;">Global System Configurations</h2>
+        <div class="scan-card" style="display: flex; flex-direction: column; gap: 20px;">
+          <div class="form-group">
+            <label>RAG Model Version</label>
+            <select class="form-input" style="background: white;">
+              <option>Gemini 1.5 Pro (Default)</option>
+              <option>Gemini 1.5 Flash (Low-Latency)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Confidence Threshold</label>
+            <input type="range" min="0" max="100" value="85" style="width: 100%; cursor: pointer;">
+            <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--slate-400); margin-top: 4px;">
+              <span>0% (Relaxed)</span>
+              <span>85% (Optimal)</span>
+              <span>100% (Strict)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </section>
+  </main>
+
+  <!-- ==========================================
+       Add Document Modal (Admin Popup)
+       ========================================== -->
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>+ Add Document</h3>
+        <button class="modal-close-btn" id="modal-close">&times;</button>
+      </div>
+      <form id="doc-form">
+        <div class="modal-body">
+          <div class="form-group" style="text-align: center;">
+            <label data-trn="uploadDocumentLabel" style="margin-bottom: 12px; display: block;">Select Document File</label>
+            <!-- File Select Box with large + icon -->
+            <div class="camera-scan-preview" id="modal-upload-zone" style="height: 160px; cursor: pointer; border: 2px dashed var(--slate-300); border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: var(--slate-50);">
+              <i class="fas fa-plus" style="font-size: 32px; color: var(--primary); margin-bottom: 12px; background: var(--green-bg); width: 64px; height: 64px; display: flex; align-items: center; justify-content: center; border-radius: 50%;"></i>
+              <span class="camera-placeholder-desc" id="modal-upload-text" style="font-size: 13px; font-weight: 600; color: var(--slate-700);">Click to upload PDF or Word document</span>
+              <span class="camera-placeholder-sub" style="font-size: 11px; color: var(--slate-400);">Supports PDF, DOC, DOCX</span>
+            </div>
+            <input type="file" id="modal-doc-file-input" accept=".pdf,.doc,.docx" style="display: none;" required>
+            <div id="modal-selected-file-info" style="margin-top: 12px; font-size: 12px; font-weight: 600; color: var(--primary); display: none;"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="scan-btn primary-green" id="btn-save-doc" style="padding: 8px 16px;">Save & Index</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       Admin Login Modal (Authentication check)
+       ========================================== -->
+  <div class="modal-backdrop" id="login-modal-backdrop">
+    <div class="modal-content" style="max-width: 400px;">
+      <div class="modal-header">
+        <h3 data-trn="adminLoginHeader">Admin Portal Login</h3>
+        <button class="modal-close-btn" id="login-modal-close">&times;</button>
+      </div>
+      <form id="login-form">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="login-username">Username</label>
+            <input type="text" id="login-username" class="form-input" placeholder="Enter username" required autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" class="form-input" placeholder="Enter password" required autocomplete="current-password">
+          </div>
+          <div id="login-error-msg" style="color: var(--red-text); font-size: 12px; font-weight: 600; display: none; margin-top: 8px;">
+            Invalid username or password.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="scan-btn primary-green" style="padding: 8px 16px;">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       Global Application Footer
+       ========================================== -->
+  <footer class="app-footer">
+    <div class="footer-content">
+      <div>
+        <span data-trn="appName">Retail Sales Pro</span> 
+        <span data-trn="copyright">© 2026 Retail Sales Pro. Built for high-performance teams.</span>
+      </div>
+      <div class="footer-links">
+        <a href="#" class="footer-link" data-trn="privacyPolicy">Privacy Policy</a>
+        <a href="#" class="footer-link" data-trn="termsOfService">Terms of Service</a>
+        <a href="#" class="footer-link" data-trn="helpCenter">Help Center</a>
+        <a href="#" class="footer-link" data-trn="support">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Toast container for global navigation voice commands -->
+  <div id="voice-toast" class="voice-toast-container"></div>
+
+  <!-- SPA Application Orchestration logic -->
+  <script src="app.js"></script>
+</body>
+</html>
