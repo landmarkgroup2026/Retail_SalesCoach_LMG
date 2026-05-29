@@ -836,7 +836,7 @@ function toggleSpeechRecognition(onResult, onStateChange, onError) {
 const mckinseyResponses = {
   en: {
     "Too expensive": {
-      executiveInsight: "As a Senior Retail Transformation Consultant with 20+ years of experience, I diagnose that price friction at Landmark Group is a value-perception gap. We must benchmark Apparel Group's frontline sales rigor to drive immediate ATV conversions.",
+      executiveInsight: "As a Senior Retail Transformation Consultant with 20+ years of experience, I diagnose that price friction at Landmark Group is a value-perception gap. We must benchmark best-in-class frontline sales rigor to drive immediate ATV conversions.",
       rootCause: "GCC shoppers are highly promotional-driven, yet lack quality differentiation trust. The frontline fails to pivot from transaction cost to 'Cost-per-Wear' value multipliers during high-traffic store hours.",
       recommendedIntervention: "Implement a 'Tactile Value Validation' floor protocol. Coach frontline staff on cost-per-wear pivoting scripts and leverage physical quality comparison displays on our premium lines.",
       roadmap: {
@@ -846,12 +846,12 @@ const mckinseyResponses = {
       },
       toolsFrameworks: "Landmark CPW Objection Handling Script, SOP Visual Value Merchandising Matrix.",
       successMetrics: "+14% Category ATV, +10% Conversion rate lift.",
-      replyText: "Advisory insight: Price friction is a value perception gap. We must benchmark Apparel Group and deploy Cost-per-Wear frontline scripting immediately to secure our basket values."
+      replyText: "Advisory insight: Price friction is a value perception gap. We must benchmark best practices and deploy Cost-per-Wear frontline scripting immediately to secure our basket values."
     },
     "Out of size": {
       executiveInsight: "Stockout friction leads to immediate basket abandonment in Centrepoint/Home Centre. Omni-channel inventory fulfillment is our primary tactical salvage mechanism.",
       rootCause: "Frontline associates are siloed from live digital ERP inventories and lack training to pivot to digital endless aisle options during peak floor pressure.",
-      recommendedIntervention: "Establish Reliance Retail's 'Zero-Walkout' digital reservation protocol. Train staff to instantly check handheld tablets and offer free 24h express home delivery.",
+      recommendedIntervention: "Establish a 'Zero-Walkout' digital reservation protocol. Train staff to instantly check handheld tablets and offer free 24h express home delivery.",
       roadmap: {
         day1: "Mandate all floor staff to carry live stock tablets and perform real-time queries.",
         week1: "Audit backroom-to-floor replenishments twice daily before peak shopping velocity.",
@@ -864,20 +864,20 @@ const mckinseyResponses = {
     "Just looking": {
       executiveInsight: "Exploratory GCC customers represent a massive passive conversion reservoir. Premature sales pressure destroys trust, whereas passive value positioning secures fitting room visits.",
       rootCause: "Shoppers demonstrate strong psychological resistance to aggressive, immediate pitches. Frontline lacks training on passive assisted-selling thresholds.",
-      recommendedIntervention: "Adopt Danube and Azadea Group's assisted-selling SOPs. Maintain a 3-meter physical buffer, deploy visual cues, and offer low-pressure product guidance.",
+      recommendedIntervention: "Adopt best-in-class assisted-selling SOPs. Maintain a 3-meter physical buffer, deploy visual cues, and offer low-pressure product guidance.",
       roadmap: {
         day1: "Coach staff to deliver warm greetings within 30 seconds, then step back to passive observation.",
         week1: "Audit visual promotional banner positioning at eye-level on core displays.",
         longTerm: "Establish store-wide capability training on passive floor engagement over 30-60-90 days."
       },
-      toolsFrameworks: "Azadea-benchmarked Passive Floor Engagement SOP, Floor Visual Mapping Guide.",
+      toolsFrameworks: "Benchmarked Passive Floor Engagement SOP, Floor Visual Mapping Guide.",
       successMetrics: "+12% Footfall-to-Fitting-Room conversion rate.",
-      replyText: "Advisory insight: High GCC footfall demands passive assisted selling. Benchmark Danube and Azadea, maintain a three meter buffer, and let the customer explore autonomously."
+      replyText: "Advisory insight: High GCC footfall demands passive assisted selling. Benchmark leading practices, maintain a three meter buffer, and let the customer explore autonomously."
     },
     "Compare with brand X": {
       executiveInsight: "Brand comparisons are high-intent buying signals. Winning the Landmark comparison requires direct, objective proof of superior product specifications and warranties.",
       rootCause: "Frontline staff lack competitor technical product knowledge, leaving them unable to justify Landmark's premium price points over competitor X.",
-      recommendedIntervention: "Benchmark Danube categories and AFG training discipline. Distribute competitor spec battle-cards and highlight Landmark's 2-year quality warranty.",
+      recommendedIntervention: "Benchmark industry categories and training discipline. Distribute competitor spec battle-cards and highlight Landmark's 2-year quality warranty.",
       roadmap: {
         day1: "Distribute the comparative specification sheet to all sales associates.",
         week1: "Roleplay competitor comparison objections in morning team huddles.",
@@ -903,7 +903,7 @@ const mckinseyResponses = {
   },
   ar: {
     "Too expensive": {
-      executiveInsight: "بصفتي مستشاراً أولاً للتحول بـ 20 عاماً من الخبرة، فإن مقاومة السعر في لاند مارك هي فجوة في إدراك القيمة. يجب مقارنة انضباط البيع في أباريل غروب لرفع معدلات التحويل.",
+      executiveInsight: "بصفتي مستشاراً أولاً للتحول بـ 20 عاماً من الخبرة، فإن مقاومة السعر في لاند مارك هي فجوة في إدراك القيمة. يجب مقارنة انضباط البيع المتميز لرفع معدلات التحويل.",
       rootCause: "المتسوق في الخليج يركز على العروض، لكنه يفتقد للثقة في جودة القطعة. تفشل الخطوط الأمامية في تحويل النقاش من التكلفة إلى قيمة 'تكلفة التكرار' (CPW).",
       recommendedIntervention: "تطبيق بروتوكول 'التحقق الملموس من القيمة' في صالة العرض. تدريب الموظفين على نصوص اعتراضات تكلفة التكرار واستخدام لوحات مقارنة الجودة.",
       roadmap: {
@@ -913,12 +913,12 @@ const mckinseyResponses = {
       },
       toolsFrameworks: "دليل الخطوط الأمامية لمعالجة اعتراضات السعر، مصفوفة عرض القيمة البصرية لاند مارك.",
       successMetrics: "زيادة ATV الفئة بنسبة +14%، وتحسين معدل التحويل بنسبة +10%.",
-      replyText: "رؤية استشارية: اعتراض السعر هو فجوة إدراك. يجب محاكاة أباريل غروب وتدريب الموظفين فوراً على قيمة تكلفة التكرار لحماية السلة."
+      replyText: "رؤية استشارية: اعتراض السعر هو فجوة إدراك. يجب محاكاة أفضل الممارسات وتدريب الموظفين فوراً على قيمة تكلفة التكرار لحماية السلة."
     },
     "Out of size": {
       executiveInsight: "نفاد المقاس يسبب ضياع السلة فوراً في سنتربوينت وهوم سنتر. تفعيل المخزون اللامتناهي (Omnichannel) هو طوق الإنقاذ التكتيكي الفوري.",
       rootCause: "بائعو صالة العرض معزولون عن لوحات المخازن الرقمية الفورية، ويفتقرون للتدريب على حجز المقاسات رقمياً للعملاء.",
-      recommendedIntervention: "تأسيس بروتوكول ريلاينس ريتيل 'صفر خروج بلا شراء'. تدريب الموظفين على التحقق الفوري عبر أجهزة التابلت وتأمين شحن مجاني سريع للمنزل.",
+      recommendedIntervention: "تأسيس بروتوكول 'صفر خروج بلا شراء'. تدريب الموظفين على التحقق الفوري عبر أجهزة التابلت وتأمين شحن مجاني سريع للمنزل.",
       roadmap: {
         day1: "إلزام جميع بائعي القسم بحمل أجهزة تابلت المخزون وإجراء الاستعلامات الفورية.",
         week1: "تدقيق عملية تعبئة صالة العرض مرتين يومياً قبل ساعات الذروة وحركة المرور الكثيفة.",
@@ -931,20 +931,20 @@ const mckinseyResponses = {
     "Just looking": {
       executiveInsight: "العميل المستكشف يمثل فرصة تحويل غير مستغلة في الخليج. الضغط البيعي المبكر يدمر الثقة، بينما يضمن التوجيه الصامت زيادة زيارات غرف القياس.",
       rootCause: "المتسوق في الخليج لديه ممانعة نفسية قوية ضد التوجه البيعي المباشر والملح. يفتقر البائعون لمهارة البيع المساعد الصامت.",
-      recommendedIntervention: "اعتماد معايير دانوب هوم ومجموعة أزاديا في البيع المساعد. الحفاظ على مسافة أمان 3 أمتار، وتقديم إشارات ترويجية صامتة، وإتاحة التصفح الذاتي.",
+      recommendedIntervention: "اعتماد معايير البيع المساعد المعتمدة. الحفاظ على مسافة أمان 3 أمتار، وتقديم إشارات ترويجية صامتة، وإتاحة التصفح الذاتي.",
       roadmap: {
         day1: "توجيه الموظفين بالترحيب خلال 30 ثانية ثم التراجع للمراقبة الصامتة الداعمة.",
         week1: "مراجعة وضع اللوحات الترويجية الموسمية لتكون بمستوى عين العميل تماماً.",
         longTerm: "تنفيذ برنامج تدريبي شامل على البيع المساعد الصامت في صالة العرض خلال 30-60-90 يوماً."
       },
-      toolsFrameworks: "دليل أزاديا للبيع المساعد والخدمة الصامتة، خريطة توزيع اللوحات البصرية.",
+      toolsFrameworks: "دليل تشغيل البيع المساعد والخدمة الصامتة، خريطة توزيع اللوحات البصرية.",
       successMetrics: "زيادة نسبة التحويل من صالة العرض إلى غرف القياس بمقدار +12%.",
-      replyText: "رؤية استشارية: حركة المرور المرتفعة تتطلب بيعاً صامتاً. قارن مع دانوب وأزاديا، وحافظ على مسافة ثلاثة أمتار لتصفح ذاتي مريح للعميل."
+      replyText: "رؤية استشارية: حركة المرور المرتفعة تتطلب بيعاً صامتاً. قارن مع المعايير الرائدة، وحافظ على مسافة ثلاثة أمتار لتصفح ذاتي مريح للعميل."
     },
     "Compare with brand X": {
       executiveInsight: "مقارنة الماركات هي إشارة شراء مؤكدة وعالية الأهمية. كسب تذكرة المقارنة يتطلب إبرازاً فورياً للمواصفات الفنية المتفوقة والضمان الذهبي لاند مارك.",
       rootCause: "يفتقر بائعو صالة العرض لمعلومات فنية منظمة عن المنافسين، مما يجعلهم عاجزين عن تبرير فرق السعر لعلاماتنا الفاخرة.",
-      recommendedIntervention: "محاكاة تصنيف فئات دانوب وانضباط تدريب AFG. توزيع بطاقات مقارنة المواصفات والتركيز على الضمان لمدة عامين.",
+      recommendedIntervention: "محاكاة تصنيف فئات التجزئة الرائدة وانضباط التدريب المعتمد. توزيع بطاقات مقارنة المواصفات والتركيز على الضمان لمدة عامين.",
       roadmap: {
         day1: "توزيع منشور مقارنة المواصفات الفنية على جميع موظفي صالة العرض.",
         week1: "عمل محاكاة جماعية يومية لمعالجة اعتراض مقارنة المنافسين في الاجتماع الصباحي.",
@@ -1385,6 +1385,7 @@ let uploadedImageSrc = null;
 let tempUploadedFile = null;
 let adminRedirectView = 'documents';
 let adminRedirectPane = 'documents';
+let selectedPersonality = 'Professional (Kore)';
 
 let chatHistory = {
   en: [{ sender: 'coach', text: "Hello, I am your coach. How can I guide you today?" }],
@@ -2978,7 +2979,7 @@ function setupEventHandlers() {
   els.tabTextCoach.addEventListener('click', () => switchGuestView('text-coach'));
   els.tabVisualAuditor.addEventListener('click', () => switchGuestView('auditor'));
 
-  els.micInner.addEventListener('click', handleMicClick);
+  els.micOuter.addEventListener('click', handleMicClick);
   
   els.chatMicBtn.addEventListener('click', () => {
     if (isChatRecording) {
