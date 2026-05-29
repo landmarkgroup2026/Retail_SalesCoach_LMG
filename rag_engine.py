@@ -3,6 +3,10 @@ import re
 import math
 import pdfplumber
 import docx
+import json
+import urllib.request
+import urllib.parse
+import urllib.error
 
 KB_DIR = r"d:\Projects\voice bot\KB"
 
@@ -54,6 +58,27 @@ class RAGEngine:
         self.idf = {} # IDF values for term vocabulary
         self.chunk_vectors = [] # List of term weight dictionaries for each chunk
         self.initialized = False
+        self.llm_provider = "offline"
+        self.llm_api_key = ""
+        self.llm_model = "gemini-1.5-flash"
+        self.reload_llm_config()
+        
+    def reload_llm_config(self):
+        config_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "llm_config.json")
+        if os.path.exists(config_path):
+            try:
+                with open(config_path, "r", encoding="utf-8") as f:
+                    config = json.load(f)
+                    self.llm_provider = config.get("provider", "offline")
+                    self.llm_api_key = config.get("api_key", "").strip()
+                    self.llm_model = config.get("model", "gemini-1.5-flash")
+                    print(f"[RAG] Loaded LLM Config: provider={self.llm_provider}, model={self.llm_model}")
+                    return
+            except Exception as e:
+                print(f"[RAG] Error reading LLM config: {e}")
+        self.llm_provider = "offline"
+        self.llm_api_key = ""
+        self.llm_model = "gemini-1.5-flash"
         
     def rebuild_index(self):
         """Extracts text from all files in KB_DIR and builds TF-IDF index."""
@@ -275,11 +300,147 @@ class RAGEngine:
         scored_chunks.sort(key=lambda x: x[0], reverse=True)
         return scored_chunks[:top_k]
 
+    def _call_llm_api(self, prompt):
+        try:
+            if self.llm_provider == "gemini":
+                # Ensure the model string doesn't duplicate path if customized
+                model = self.llm_model
+                if not model:
+                    model = "gemini-1.5-flash"
+                url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={self.llm_api_key}"
+                headers = {"Content-Type": "application/json"}
+                data = {
+                    "contents": [{"parts": [{"text": prompt}]}],
+                    "generationConfig": {
+                        "responseMimeType": "application/json"
+                    }
+                }
+                req = urllib.request.Request(
+                    url, 
+                    data=json.dumps(data).encode("utf-8"), 
+                    headers=headers, 
+                    method="POST"
+                )
+                
+                with urllib.request.urlopen(req, timeout=12) as response:
+                    res_body = response.read().decode("utf-8")
+                    res_json = json.loads(res_body)
+                    text_out = res_json["candidates"][0]["content"]["parts"][0]["text"]
+                    return json.loads(text_out)
+                    
+            elif self.llm_provider == "openai":
+                url = "https://api.openai.com/v1/chat/completions"
+                headers = {
+                    "Authorization": f"Bearer {self.llm_api_key}",
+                    "Content-Type": "application/json"
+                }
+                model = self.llm_model
+                if not model:
+                    model = "gpt-4o-mini"
+                data = {
+                    "model": model,
+                    "messages": [
+                        {"role": "system", "content": "You are a senior retail consultant. You must output a JSON response matching the required schema exactly."},
+                        {"role": "user", "content": prompt}
+                    ],
+                    "response_format": {"type": "json_object"}
+                }
+                req = urllib.request.Request(
+                    url, 
+                    data=json.dumps(data).encode("utf-8"), 
+                    headers=headers, 
+                    method="POST"
+                )
+                
+                with urllib.request.urlopen(req, timeout=12) as response:
+                    res_body = response.read().decode("utf-8")
+                    res_json = json.loads(res_body)
+                    text_out = res_json["choices"][0]["message"]["content"]
+                    return json.loads(text_out)
+        except Exception as e:
+            print(f"[RAG] LLM call failed ({e}). Falling back to static templates...")
+        return None
+
     def generate_response(self, query_text, personality, lang="en"):
         """Generates a dynamic senior consultant coaching response based on RAG retrieval."""
         lang_filter = "ARABIC" if lang == "ar" else "ENGLISH"
-        results = self.query(query_text, top_k=2, lang_filter=lang_filter)
         
+        # RAG LLM Branch
+        if self.llm_provider != "offline" and self.llm_api_key:
+            # Query top 3 chunks
+            results = self.query(query_text, top_k=3, lang_filter=lang_filter)
+            if not results:
+                results = self.query(query_text, top_k=3)
+                
+            if results:
+                top_score, best_chunk = results[0]
+                doc_ref = f"{best_chunk.doc_name}, Page {best_chunk.page}" if ext_is_pdf(best_chunk.doc_name) else f"{best_chunk.doc_name}, Section {best_chunk.paragraph}"
+                
+                # Combine matching chunks context
+                context_chunks = []
+                for score, chunk in results:
+                    context_chunks.append(f"Source: {chunk.doc_name}\nContent: {chunk.text}")
+                context_data = "\n\n".join(context_chunks)
+                
+                is_ar = (lang == "ar")
+                prompt = f"""
+You are a Senior Retail Transformation Consultant with 20+ years of GCC experience working with leading retail organizations.
+Your task is to analyze the following frontline user query and context, and formulate a high-impact, tailored store operations solution specifically for Landmark Group.
+
+USER QUERY: "{query_text}"
+PERSONALITY CALIBRATION: "{personality}"
+REQUESTED LANGUAGE: "{"Arabic" if is_ar else "English"}"
+
+Retrieved Knowledge Base Context:
+{context_data}
+
+CONSTRAINTS:
+1. Act as an expert retail operations coach.
+2. The output MUST be completely brand-generic (do NOT mention Azadea, Reliance Retail, Apparel Group, Danube, Pan Homes, AFG, or any specific group name). Keep recommendations generic but applicable to Landmark.
+3. The response MUST NOT mention the user query back. Do not write phrases like "Answering your query about '{query_text}'" or "Regarding '{query_text}'". Focus purely on delivering the solution and operational de-escalations/interventions directly.
+4. Output a syntactically valid JSON object. You must match the following JSON schema EXACTLY:
+{{
+  "executiveInsight": "A high-impact executive insight diagnosing the operational bottleneck or opportunity, framed in your selected consultant personality.",
+  "rootCause": "The underlying root cause analysis explaining the frontline operational breakdown or workflow friction, with NO mentions of the raw user query.",
+  "recommendedIntervention": "A practical, immediate store-floor intervention based on the provided Knowledge Base context.",
+  "roadmap": {{
+    "day1": "Immediate Day 1 alignment tasks for store managers and floor teams.",
+    "week1": "Week 1 visual and operational compliance checkouts.",
+    "longTerm": "30-60-90 Day rolling capability trace and review KPIs."
+  }},
+  "toolsFrameworks": "Specific operational guidelines, SOP checklists, or scripts recommended to support the floor teams.",
+  "successMetrics": "Concrete success KPIs (e.g. +X% conversion, +Y% ATV lift).",
+  "spokenText": "A concise, natural 2-line executive spoken summary for speech synthesis (under 40 words)."
+}}
+
+IMPORTANT: Output ONLY the raw JSON object. Do not include markdown code block formatting (like ```json ... ```). Output MUST be in {"Arabic script" if is_ar else "English"}.
+"""
+                llm_res = self._call_llm_api(prompt)
+                if llm_res and isinstance(llm_res, dict):
+                    # Validate keys are present or provide fallback defaults
+                    required_keys = ["executiveInsight", "rootCause", "recommendedIntervention", "roadmap", "toolsFrameworks", "successMetrics", "spokenText"]
+                    if all(key in llm_res for key in required_keys):
+                        if isinstance(llm_res["roadmap"], dict) and "day1" in llm_res["roadmap"] and "week1" in llm_res["roadmap"] and "longTerm" in llm_res["roadmap"]:
+                            exec_ins, sp_txt = apply_personality_tuning(llm_res["executiveInsight"], llm_res["spokenText"], personality, is_ar)
+                            
+                            return {
+                                "executiveInsight": exec_ins,
+                                "rootCause": llm_res["rootCause"],
+                                "recommendedIntervention": llm_res["recommendedIntervention"],
+                                "roadmap": {
+                                    "day1": llm_res["roadmap"]["day1"],
+                                    "week1": llm_res["roadmap"]["week1"],
+                                    "longTerm": llm_res["roadmap"]["longTerm"]
+                                },
+                                "toolsFrameworks": llm_res["toolsFrameworks"],
+                                "successMetrics": llm_res["successMetrics"],
+                                "source": doc_ref,
+                                "spokenText": sp_txt,
+                                "score": round(top_score, 3)
+                            }
+        
+        # Standard Rule-based Fallback Branch
+        results = self.query(query_text, top_k=2, lang_filter=lang_filter)
         if not results:
             results = self.query(query_text, top_k=2)
             
@@ -299,7 +460,7 @@ class RAGEngine:
             executive_insight = f"بصفتي مستشاراً أولاً لتحول التجزئة بـ 20 عاماً من الخبرة، يتطلب هذا الموقف في مجموعة لاند مارك تدخلاً فورياً لبناء قدرات الخطوط الأمامية. يجب أن نتبنى أفضل الممارسات العالمية في إنتاجية الفروع وتجربة العملاء المتميزة لتأمين المبيعات والسرعة."
             
             # 2. Root Cause Analysis
-            root_cause = f"السبب السطحي هو مجرد استفسار عادي بخصوص {query_text}، لكن السبب الجذري الفعلي هو ضعف انضباط التنفيذ في صالة العرض وغياب التمكين الفئوي للموظفين، مما يخلق عائقاً شرائياً خلال ساعات الذروة في دول الخليج."
+            root_cause = f"السبب السطحي يمثل استفساراً تشغيلياً معتاداً في صالة العرض، لكن السبب الجذري الفعلي هو ضعف انضباط التنفيذ في صالة العرض وغياب التمكين الفئوي للموظفين، مما يخلق عائقاً شرائياً خلال ساعات الذروة في دول الخليج."
             
             # 3. Recommended Intervention
             recommended_intervention = f"تطبيق بروتوكول المبيعات المساعدة الفوري في صالة العرض لاند مارك. إعادة تنظيم تجربة الفئة وتدريب الموظفين بناءً على معاييرنا المعتمدة: '{clean_context[:220]}...'"
@@ -322,7 +483,7 @@ class RAGEngine:
             executive_insight = f"As a Senior Retail Transformation Consultant with 20+ years of experience, I diagnose that this situation at Landmark Group demands an immediate frontline capability intervention. We must benchmark against best-in-class store productivity and customer experience standards to secure rapid conversion."
             
             # 2. Root Cause Analysis
-            root_cause = f"The surface issue is a standard frontline query regarding '{query_text}'. The real root cause is a lack of frontline execution rigor and inadequate category enablement, creating high friction during GCC peak traffic hours."
+            root_cause = f"The surface issue represents a standard frontline operational inquiry. The real root cause is a lack of frontline execution rigor and inadequate category enablement, creating high friction during GCC peak traffic hours."
             
             # 3. Recommended Intervention
             recommended_intervention = f"Deploy an active assisted-selling floor intervention tailored specifically for Landmark. Re-align category experience mapping and frontline training using our core database protocols: '{clean_context[:220]}...'"
