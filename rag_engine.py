@@ -296,7 +296,7 @@ class RAGEngine:
         
         if is_ar:
             # 1. Executive Insight
-            executive_insight = f"بصفتي مستشاراً أولاً لتحول التجزئة بـ 20 عاماً من الخبرة، يتطلب هذا الموقف في مجموعة لاند مارك تدخلاً فورياً لبناء قدرات الخطوط الأمامية. يجب أن نتبنى نموذج أباريل غروب في إنتاجية الفروع وتجربة عملاء أزاديا لتأمين المبيعات والسرعة."
+            executive_insight = f"بصفتي مستشاراً أولاً لتحول التجزئة بـ 20 عاماً من الخبرة، يتطلب هذا الموقف في مجموعة لاند مارك تدخلاً فورياً لبناء قدرات الخطوط الأمامية. يجب أن نتبنى أفضل الممارسات العالمية في إنتاجية الفروع وتجربة العملاء المتميزة لتأمين المبيعات والسرعة."
             
             # 2. Root Cause Analysis
             root_cause = f"السبب السطحي هو مجرد استفسار عادي بخصوص {query_text}، لكن السبب الجذري الفعلي هو ضعف انضباط التنفيذ في صالة العرض وغياب التمكين الفئوي للموظفين، مما يخلق عائقاً شرائياً خلال ساعات الذروة في دول الخليج."
@@ -310,7 +310,7 @@ class RAGEngine:
             roadmap_longterm = "مراقبة وتحليل أثر التدخل على مؤشر متوسط المعاملات (ATV) ونسبة التحويل خلال 30-60-90 يوماً."
             
             # 5. Tools & Frameworks
-            tools_frameworks = f"دليل المبيعات المساعدة لمجموعة لاند مارك، قائمة تدقيق SOP لعرض الفئات المستوحاة من ريلاينس ريتيل، سيناريو معالجة الاعتراضات للخطوط الأمامية."
+            tools_frameworks = f"دليل المبيعات المساعدة لمجموعة لاند مارك، قائمة تدقيق SOP لعرض الفئات المستوحاة من المعايير الرائدة، سيناريو معالجة الاعتراضات للخطوط الأمامية."
             
             # 6. Success Metrics
             success_metrics = "زيادة نسبة التحويل بمقدار +15%، وتحسين مؤشر ATV بنسبة +12%، وامتثال كامل لصالة العرض بنسبة 100%."
@@ -319,7 +319,7 @@ class RAGEngine:
             spoken_text = "إليك توصيتي الاستشارية الفورية لمجموعة لاند مارك. السبب الجذري هو ضعف التمكين في صالة العرض. يجب تفعيل بروتوكول المبيعات المساعدة فوراً لرفع الإنتاجية بنسبة اثني عشر بالمئة."
         else:
             # 1. Executive Insight
-            executive_insight = f"As a Senior Retail Transformation Consultant with 20+ years of experience, I diagnose that this situation at Landmark Group demands an immediate frontline capability intervention. We must benchmark against Apparel Group's store productivity and Azadea's customer experience standards to secure rapid conversion."
+            executive_insight = f"As a Senior Retail Transformation Consultant with 20+ years of experience, I diagnose that this situation at Landmark Group demands an immediate frontline capability intervention. We must benchmark against best-in-class store productivity and customer experience standards to secure rapid conversion."
             
             # 2. Root Cause Analysis
             root_cause = f"The surface issue is a standard frontline query regarding '{query_text}'. The real root cause is a lack of frontline execution rigor and inadequate category enablement, creating high friction during GCC peak traffic hours."
@@ -333,7 +333,7 @@ class RAGEngine:
             roadmap_longterm = "Conduct L&D capability audits and measure rolling ATV and conversion impacts in a 30-60-90 day performance review."
             
             # 5. Tools & Frameworks
-            tools_frameworks = "Landmark Assisted-Selling SOP Flowchart, SOP Category Audit Checklist benchmarking Reliance Retail, Frontline Capability Evaluation Matrix."
+            tools_frameworks = "Landmark Assisted-Selling SOP Flowchart, SOP Category Audit Checklist benchmarking leading industry standards, Frontline Capability Evaluation Matrix."
             
             # 6. Success Metrics
             success_metrics = "+15% Conversion Rate, +12% Average Transaction Value (ATV) lift, 100% visual merchandising compliance."
