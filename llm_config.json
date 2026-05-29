@@ -1,0 +1,5 @@
+{
+  "provider": "offline",
+  "api_key": "AIzaSyTestApiKeyForVerificationSecure123",
+  "model": "gemini-1.5-flash"
+}
