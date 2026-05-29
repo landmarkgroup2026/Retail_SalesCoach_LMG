@@ -836,96 +836,136 @@ function toggleSpeechRecognition(onResult, onStateChange, onError) {
 const mckinseyResponses = {
   en: {
     "Too expensive": {
-      actions: [
-        "Acknowledge and validate: Speak with empathy, 'I completely understand that price is an important factor.'",
-        "Pivot to durability: Emphasize the double-reinforced organic cotton and double-stitched pockets.",
-        "Trigger tactile proof: Hand the garment over, 'Would you like to feel the weight of the fabric?'"
-      ],
-      rootCause: "The customer is focused on transaction cost rather than cost-per-wear value. There is cognitive friction due to a failure in perceiving quality differentiation.",
-      additional: "Our independent tests confirm 40% higher tensile strength than mass-produced retail brands. Highlight our 2-year quality warranty to offset purchase anxiety."
+      executiveInsight: "As a Senior Retail Transformation Consultant with 20+ years of experience, I diagnose that price friction at Landmark Group is a value-perception gap. We must benchmark Apparel Group's frontline sales rigor to drive immediate ATV conversions.",
+      rootCause: "GCC shoppers are highly promotional-driven, yet lack quality differentiation trust. The frontline fails to pivot from transaction cost to 'Cost-per-Wear' value multipliers during high-traffic store hours.",
+      recommendedIntervention: "Implement a 'Tactile Value Validation' floor protocol. Coach frontline staff on cost-per-wear pivoting scripts and leverage physical quality comparison displays on our premium lines.",
+      roadmap: {
+        day1: "Train staff in the morning huddle on CPW scripts and deploy active floor support.",
+        week1: "Install value VM signage cards detailing material specifications on primary racks.",
+        longTerm: "Retrain apparel associates on premium story-telling and track category ATV gains over 30-60-90 days."
+      },
+      toolsFrameworks: "Landmark CPW Objection Handling Script, SOP Visual Value Merchandising Matrix.",
+      successMetrics: "+14% Category ATV, +10% Conversion rate lift.",
+      replyText: "Advisory insight: Price friction is a value perception gap. We must benchmark Apparel Group and deploy Cost-per-Wear frontline scripting immediately to secure our basket values."
     },
     "Out of size": {
-      actions: [
-        "Offer direct logistics: Check other store branches instantly and offer express 24h home delivery.",
-        "Provide style substitutes: Guide them to the Men's Premium apparel shelf showing similar fits.",
-        "Suggest coordinate add-ons: Introduce matching accessories like leather belts while resolving the size."
-      ],
-      rootCause: "Stockout friction is highly emotional and leads to store exit. The customer requires immediate resolution to avoid disappointment and lock in purchasing intent.",
-      additional: "Always offer free shipping as a gesture of store goodwill to secure customer relationship and close the sales slip today."
+      executiveInsight: "Stockout friction leads to immediate basket abandonment in Centrepoint/Home Centre. Omni-channel inventory fulfillment is our primary tactical salvage mechanism.",
+      rootCause: "Frontline associates are siloed from live digital ERP inventories and lack training to pivot to digital endless aisle options during peak floor pressure.",
+      recommendedIntervention: "Establish Reliance Retail's 'Zero-Walkout' digital reservation protocol. Train staff to instantly check handheld tablets and offer free 24h express home delivery.",
+      roadmap: {
+        day1: "Mandate all floor staff to carry live stock tablets and perform real-time queries.",
+        week1: "Audit backroom-to-floor replenishments twice daily before peak shopping velocity.",
+        longTerm: "Conduct L&D capability audits and measure rolling ATV and conversion impacts in a 30-60-90 day performance review."
+      },
+      toolsFrameworks: "Landmark Endless Aisle Reservation SOP, Stockout Handheld Lookup Checklist.",
+      successMetrics: "+18% Stockout salvage rate, 98% stock verification speed.",
+      replyText: "Advisory insight: Stockout is a terminal friction point. We must deploy the Endless Aisle reservation protocol immediately to secure walkout revenue within twenty four hours."
     },
     "Just looking": {
-      actions: [
-        "Provide structural space: Validate with a warm smile, 'Please browse our central collection racks.'",
-        "Deliver passive context: Briefly mention: 'Our premium denim display is at a 20% promotional discount today.'",
-        "Position availability: Ensure they know you are here to help if they need size checks or fittings."
-      ],
-      rootCause: "The customer is in a high-velocity exploration phase. They object to sales friction, requiring passive support and low-pressure psychological reassurance.",
-      additional: "Maintain a supportive, relaxed presence. Step back 3 meters after opening, keeping passive visual contact in case they touch a product."
+      executiveInsight: "Exploratory GCC customers represent a massive passive conversion reservoir. Premature sales pressure destroys trust, whereas passive value positioning secures fitting room visits.",
+      rootCause: "Shoppers demonstrate strong psychological resistance to aggressive, immediate pitches. Frontline lacks training on passive assisted-selling thresholds.",
+      recommendedIntervention: "Adopt Danube and Azadea Group's assisted-selling SOPs. Maintain a 3-meter physical buffer, deploy visual cues, and offer low-pressure product guidance.",
+      roadmap: {
+        day1: "Coach staff to deliver warm greetings within 30 seconds, then step back to passive observation.",
+        week1: "Audit visual promotional banner positioning at eye-level on core displays.",
+        longTerm: "Establish store-wide capability training on passive floor engagement over 30-60-90 days."
+      },
+      toolsFrameworks: "Azadea-benchmarked Passive Floor Engagement SOP, Floor Visual Mapping Guide.",
+      successMetrics: "+12% Footfall-to-Fitting-Room conversion rate.",
+      replyText: "Advisory insight: High GCC footfall demands passive assisted selling. Benchmark Danube and Azadea, maintain a three meter buffer, and let the customer explore autonomously."
     },
     "Compare with brand X": {
-      actions: [
-        "Highlight material differences: Detail that Brand X uses synthetic blends, while we use 100% long-staple cotton.",
-        "Compare construction quality: Invite them to look at the double stitching and heavy-duty steel rivets.",
-        "Emphasize shape retention: Point out our 2% elastane blend which maintains fitting through 50+ washes."
-      ],
-      rootCause: "The customer is conducting a technical value comparison. They lack concrete product differentiators to justify our premium pricing tier over competitor X.",
-      additional: "Maintain brand integrity—never disparage the competitor. Focus entirely on our structural specifications and ethical production certifications."
+      executiveInsight: "Brand comparisons are high-intent buying signals. Winning the Landmark comparison requires direct, objective proof of superior product specifications and warranties.",
+      rootCause: "Frontline staff lack competitor technical product knowledge, leaving them unable to justify Landmark's premium price points over competitor X.",
+      recommendedIntervention: "Benchmark Danube categories and AFG training discipline. Distribute competitor spec battle-cards and highlight Landmark's 2-year quality warranty.",
+      roadmap: {
+        day1: "Distribute the comparative specification sheet to all sales associates.",
+        week1: "Roleplay competitor comparison objections in morning team huddles.",
+        longTerm: "Execute category capability certifications and measure private-label margin gains in a 30-60-90 day review."
+      },
+      toolsFrameworks: "Landmark Technical Specification Battle-Card, Private Label Warranty Scripts.",
+      successMetrics: "+15% Private-Label margin conversion, 100% staff capability score.",
+      replyText: "Advisory insight: Competitor comparisons are positive buying signals. Deploy specification battle-cards immediately and leverage our two year warranty to lock in the ticket."
     },
     "default": {
-      actions: [
-        "Validate objection first: Always confirm you understand their point before presenting any solutions.",
-        "Present value multipliers: Highlight the unique selling points (USPs) and material specifications.",
-        "Suggest direct actions: Provide a clear next step such as trying on the garment or placing an order."
-      ],
-      rootCause: "The customer has encountered a purchase obstacle. They are looking for clear product differentiation and reassurance before committing to the sale.",
-      additional: "Observe body language, maintain professional eye contact, and present premium alternatives if they remain hesitant."
+      executiveInsight: "Frontline capability is Landmark's primary strategic differentiator. Any operational obstacle on the floor demands immediate expert-level capability enablement.",
+      rootCause: "frontline associates lack specialized domain knowledge and real-time execution rigor, leading to average transaction value loss.",
+      recommendedIntervention: "Deploy immediate micro-coaching interventions on standard SOPs and category guidelines to empower on-ground teams.",
+      roadmap: {
+        day1: "Direct floor managers to run category huddles and verify display compliance.",
+        week1: "Perform on-floor roleplay exercises on standard assisted-selling scripts.",
+        longTerm: "Roll out L&D retail capability audits across all multi-brand operations over 30-60-90 days."
+      },
+      toolsFrameworks: "Landmark Multi-Brand Frontline SOP, Retail Micro-Coaching Checklist.",
+      successMetrics: "+10% overall floor compliance, +8% conversion rate lift.",
+      replyText: "Advisory insight: Floor capability is our competitive advantage. Deploy micro coaching and category SOP audits immediately to enable frontline teams."
     }
   },
   ar: {
     "Too expensive": {
-      actions: [
-        "أظهر التفهم فوراً: تحدث بتعاطف، 'أفهم وجهة نظرك تماماً، السعر عامل أساسي في اتخاذ القرار.'",
-        "وجه التركيز إلى الجودة: أكد على خامة القطن العضوي الفاخر المقوى، الذي يدوم لفترة أطول بمرتين.",
-        "ادع العميل للملامسة: سلّمه القطعة بيدك قائلًا: 'هل ترغب بمعاينة متانة وجودة الخياطة بنفسك؟'"
-      ],
-      rootCause: "العميل يركز على التكلفة اللحظية للشراء بدلافية في الشرق الأوسط. غياب الإدراك الحسي للفرق بين منتجنا والمنتجات التجارية يخلق هذا الاعتراض.",
-      additional: "أكد على الضمان الذهبي لمدة عامين. أظهر للعميل متانة الخيوط المزدوجة التي تمنع الاهتراء مقارنة بالبدائل الرخيصة."
+      executiveInsight: "بصفتي مستشاراً أولاً للتحول بـ 20 عاماً من الخبرة، فإن مقاومة السعر في لاند مارك هي فجوة في إدراك القيمة. يجب مقارنة انضباط البيع في أباريل غروب لرفع معدلات التحويل.",
+      rootCause: "المتسوق في الخليج يركز على العروض، لكنه يفتقد للثقة في جودة القطعة. تفشل الخطوط الأمامية في تحويل النقاش من التكلفة إلى قيمة 'تكلفة التكرار' (CPW).",
+      recommendedIntervention: "تطبيق بروتوكول 'التحقق الملموس من القيمة' في صالة العرض. تدريب الموظفين على نصوص اعتراضات تكلفة التكرار واستخدام لوحات مقارنة الجودة.",
+      roadmap: {
+        day1: "تدريب الموظفين في الاجتماع الصباحي على نصوص CPW ومراقبة التطبيق المباشر.",
+        week1: "تثبيت لوحات توضيح الجودة والمواصفات الفنية للخامات على الرفوف الرئيسية.",
+        longTerm: "إعادة تأهيل بائعي الأزياء على سرد قصة المنتج ومتابعة نمو ATV الفئة في 30-60-90 يوماً."
+      },
+      toolsFrameworks: "دليل الخطوط الأمامية لمعالجة اعتراضات السعر، مصفوفة عرض القيمة البصرية لاند مارك.",
+      successMetrics: "زيادة ATV الفئة بنسبة +14%، وتحسين معدل التحويل بنسبة +10%.",
+      replyText: "رؤية استشارية: اعتراض السعر هو فجوة إدراك. يجب محاكاة أباريل غروب وتدريب الموظفين فوراً على قيمة تكلفة التكرار لحماية السلة."
     },
     "Out of size": {
-      actions: [
-        "اطرح البدائل اللوجستية: اعرض التحقق الفوري في الفروع الأخرى وتأمين توصيل مجاني سريع للمنزل.",
-        "اقترح بدائل مشابهة: وجّه العميل إلى رفوف التصاميم الجديدة التي تتوفر بها مقاسات مشابهة تماماً.",
-        "اعرض تصفح المكملات: اقترح معاينة الأحزمة الجلدية الفاخرة ريثما نؤكد حجز مقاسه عبر النظام."
-      ],
-      rootCause: "عدم توفر المقاس يسبب خيبة أمل سريعة ويدفع لمغادرة المتجر. يحتاج العميل إلى حل عملي مباشر لتعويض النقص اللحظي والحفاظ على رغبته الشرائية.",
-      additional: "الشحن المجاني في حالة نفاد المقاس يعتبر لفتة اهتمام ترفع من ولاء العميل للمتجر وتضمن حسم عملية البيع."
+      executiveInsight: "نفاد المقاس يسبب ضياع السلة فوراً في سنتربوينت وهوم سنتر. تفعيل المخزون اللامتناهي (Omnichannel) هو طوق الإنقاذ التكتيكي الفوري.",
+      rootCause: "بائعو صالة العرض معزولون عن لوحات المخازن الرقمية الفورية، ويفتقرون للتدريب على حجز المقاسات رقمياً للعملاء.",
+      recommendedIntervention: "تأسيس بروتوكول ريلاينس ريتيل 'صفر خروج بلا شراء'. تدريب الموظفين على التحقق الفوري عبر أجهزة التابلت وتأمين شحن مجاني سريع للمنزل.",
+      roadmap: {
+        day1: "إلزام جميع بائعي القسم بحمل أجهزة تابلت المخزون وإجراء الاستعلامات الفورية.",
+        week1: "تدقيق عملية تعبئة صالة العرض مرتين يومياً قبل ساعات الذروة وحركة المرور الكثيفة.",
+        longTerm: "تنفيذ تقييمات التعلم والتطوير (L&D) على منصة المخزون الرقمي خلال 30-60-90 يوماً."
+      },
+      toolsFrameworks: "دليل حجز المخزون اللامتناهي لاند مارك، قائمة تدقيق التحقق من المخزون للبائعين.",
+      successMetrics: "إنقاذ +18% من معاملات المقاسات المفقودة، ودقة استعلام بنسبة 98%.",
+      replyText: "رؤية استشارية: نفاد المقاس عائق حرج. يجب تفعيل بروتوكول المخزون اللامتناهي فوراً لتأمين شحن منزلي مجاني للعميل خلال أربع وعشرين ساعة."
     },
     "Just looking": {
-      actions: [
-        "منح العميل مساحته الكاملة: رحب به بابتسامة، 'تفضل بالتصفح بكل أريحية في ممرات تشكيلتنا الجديدة.'",
-        "اطرح عرضاً سياقياً هادئاً: أشر باختصار: 'منصّة الجينز الفاخرة تشملها خصومات 20% سارية اليوم فقط.'",
-        "أكد على تواجدك للمساعدة: دع العميل يعرف أنك متواجد في صالة العرض لأي استفسار أو مقاس."
-      ],
-      rootCause: "العميل في مرحلة استكشافية غير ملتزمة. لديه حاجز نفسي ضد الإلحاح البيعي، ويتطلب التواجد الهادئ الداعم دون أي ضغوط إضافية.",
-      additional: "تراجع خطوتين للخلف بعد الترحيب بالعميل. راقب تفاعله البصري مع الرفوف لتتدخل فور لمسه لأي قطعة."
+      executiveInsight: "العميل المستكشف يمثل فرصة تحويل غير مستغلة في الخليج. الضغط البيعي المبكر يدمر الثقة، بينما يضمن التوجيه الصامت زيادة زيارات غرف القياس.",
+      rootCause: "المتسوق في الخليج لديه ممانعة نفسية قوية ضد التوجه البيعي المباشر والملح. يفتقر البائعون لمهارة البيع المساعد الصامت.",
+      recommendedIntervention: "اعتماد معايير دانوب هوم ومجموعة أزاديا في البيع المساعد. الحفاظ على مسافة أمان 3 أمتار، وتقديم إشارات ترويجية صامتة، وإتاحة التصفح الذاتي.",
+      roadmap: {
+        day1: "توجيه الموظفين بالترحيب خلال 30 ثانية ثم التراجع للمراقبة الصامتة الداعمة.",
+        week1: "مراجعة وضع اللوحات الترويجية الموسمية لتكون بمستوى عين العميل تماماً.",
+        longTerm: "تنفيذ برنامج تدريبي شامل على البيع المساعد الصامت في صالة العرض خلال 30-60-90 يوماً."
+      },
+      toolsFrameworks: "دليل أزاديا للبيع المساعد والخدمة الصامتة، خريطة توزيع اللوحات البصرية.",
+      successMetrics: "زيادة نسبة التحويل من صالة العرض إلى غرف القياس بمقدار +12%.",
+      replyText: "رؤية استشارية: حركة المرور المرتفعة تتطلب بيعاً صامتاً. قارن مع دانوب وأزاديا، وحافظ على مسافة ثلاثة أمتار لتصفح ذاتي مريح للعميل."
     },
     "Compare with brand X": {
-      actions: [
-        "وضح الفروق الجوهرية للخامات: بيّن أن العلامة X تستخدم البوليستر، بينما نستخدم قطناً طويل التيلة 100%.",
-        "قارن تفاصيل الخياطة: ادع العميل لمعاينة الكباسات والدرزات المزدوجة المتينة.",
-        "أبرز متانة الهيكل: وضح مرونة القماش الفائق الذي يحتفظ برونقه الفاخر حتى بعد 50 غسلة متكررة."
-      ],
-      rootCause: "العميل يجري مقارنة عقلانية واضحة. يفتقر إلى معرفة المواصفات الفنية الدقيقة التي تبرر فارق السعر بيننا وبين المنافس X.",
-      additional: "تجنب تماماً التقليل من المنافس X. ركز بالكامل على إبراز شهادات الجودة وحرفية التصنيع الخاصة بنا."
+      executiveInsight: "مقارنة الماركات هي إشارة شراء مؤكدة وعالية الأهمية. كسب تذكرة المقارنة يتطلب إبرازاً فورياً للمواصفات الفنية المتفوقة والضمان الذهبي لاند مارك.",
+      rootCause: "يفتقر بائعو صالة العرض لمعلومات فنية منظمة عن المنافسين، مما يجعلهم عاجزين عن تبرير فرق السعر لعلاماتنا الفاخرة.",
+      recommendedIntervention: "محاكاة تصنيف فئات دانوب وانضباط تدريب AFG. توزيع بطاقات مقارنة المواصفات والتركيز على الضمان لمدة عامين.",
+      roadmap: {
+        day1: "توزيع منشور مقارنة المواصفات الفنية على جميع موظفي صالة العرض.",
+        week1: "عمل محاكاة جماعية يومية لمعالجة اعتراض مقارنة المنافسين في الاجتماع الصباحي.",
+        longTerm: "تفعيل اختبارات الكفاءة الفئوية وقياس نمو هوامش العلامات الخاصة في 30-60-90 يوماً."
+      },
+      toolsFrameworks: "بطاقة مقارنة المواصفات الفنية لاند مارك، نصوص عرض الضمان للعلامات الخاصة.",
+      successMetrics: "تحسين مبيعات العلامات الخاصة بنسبة +15%، وكفاءة الموظفين بنسبة 100%.",
+      replyText: "رؤية استشارية: مقارنة المنافسين إشارة شراء إيجابية. سلّم بطاقة مقارنة المواصفات فوراً وركز على ضمان العامين لتأمين السلة."
     },
     "default": {
-      actions: [
-        "أكد تفهمك أولاً: احرص دائماً على إبداء التفهم لاعتراض العميل قبل طرح أي حلول بيعية.",
-        "اطرح القيمة المضافة: أبرز مزايا المنتج الفريدة من نوعها ومواصفات خاماته الفاخرة.",
-        "اقترح خطوات عملية فورية: وجّه العميل لتجربة المقاس أو القيام بحجز القطعة لتأمينها."
-      ],
-      rootCause: "واجه العميل عقبة شرائية معينة. إنه يبحث عن أدلة قاطعة ومقنعة تبرر الاستثمار وتزيل القلق من اتخاذ القرار.",
-      additional: "حافظ على لغة جسد إيجابية وتواصل بصري مهني مريح، واقترح بدائل عملية متوفرة في صالة العرض."
+      executiveInsight: "كفاءة الخطوط الأمامية هي الميزة التنافسية الأساسية للاند مارك. أي عائق تشغيلي يتطلب تمكيناً وتدريباً فورياً لفريق صالة العرض.",
+      rootCause: "يفتقر البائعون في صالة العرض للمهارات التخصصية الفئوية وانضباط التنفيذ، مما يسبب ضياع فرص البيع المتقاطع وقيمة السلة.",
+      recommendedIntervention: "تطبيق تدخلات تدريب مصغرة فورية على معايير SOP واللوائح التشغيلية لتمكين الموظفين في الميدان.",
+      roadmap: {
+        day1: "توجيه مديري صالة العرض لعمل اجتماعات فئوية سريعة ومراجعة امتثال الرفوف.",
+        week1: "عمل تمارين عملية لموظفي صالة العرض على نصوص البيع المساعد المعتمدة.",
+        longTerm: "تنفيذ تدقيق شامل لكفاءة الخطوط الأمامية لعمليات التجزئة خلال 30-60-90 يوماً."
+      },
+      toolsFrameworks: "دليل تشغيل الخطوط الأمامية للاند مارك، قائمة تدقيق التدريب المصغر اليومي.",
+      successMetrics: "تحسين امتثال صالة العرض بنسبة +10%، وارتفاع معدل التحويل بمقدار +8%.",
+      replyText: "رؤية استشارية: كفاءة الموظفين هي تفوقنا. طبّق تدقيق SOP الفئوي والتدريب المصغر فوراً لتمكين بائعي صالة العرض."
     }
   }
 };
@@ -950,21 +990,25 @@ function getMckinseyResponse(input) {
     const cleanInput = input.replace(/["'<>]/g, "");
     
     return {
-      actions: isAr ? [
-        `تحليل الاستفسار: أظهر الاهتمام والترحيب بسؤال العميل عن "${cleanInput}".`,
-        `طرح الحل المناسب: قدّم المواصفات الفنية لمنتجاتنا كإجابة حاسمة ومقنعة.`,
-        `تحفيز الخطوة التالية: ادعُ العميل لمعاينة تفاصيل الخامات أو تجربة المقاس فوراً.`
-      ] : [
-        `Acknowledge and validate: Respond with professional expertise to their query regarding "${cleanInput}".`,
-        `Deliver value differentiator: Address their concern directly using our certified product specifications.`,
-        `Guide secondary action: Direct the customer to experience the fit or touch the premium materials.`
-      ],
+      executiveInsight: isAr ? 
+        `بصفتي مستشاراً أولاً بـ 20 عاماً من الخبرة، يتطلب الاستفسار عن "${cleanInput}" تمكيناً فورياً وتدريباً للخطوط الأمامية لرفع الكفاءة التشغيلية بالخليج.` :
+        `As a Senior Retail Transformation Consultant with 20+ years of experience, I diagnose that this inquiry regarding '${cleanInput}' demands a structured frontline capability intervention to boost operations.`,
       rootCause: isAr ? 
-        `العميل يبحث عن تأكيد أو تفاصيل حول "${cleanInput}". يحتاج إلى دعم فني لتبديد الشكوك وبناء الثقة في قرار الشراء.` : 
-        `The customer is seeking active reassurance or technical parameters about "${cleanInput}". They require objective validation to reduce cognitive risk.`,
-      additional: isAr ? 
-        `حافظ على نبرة صوت هادئة وواثقة. أبرز الضمان الذهبي المتوفر لدينا لجميع ملابس Apparel premium.` : 
-        `Maintain a calm and authoritative posture. Leverage our 2-year premium warranty and ethical production standards to reinforce trust.`
+        `يبحث العميل عن تحقق معرفي أو إجرائي بخصوص "${cleanInput}". يرجع ذلك لغياب الانضباط وغياب بطاقات المقارنة الفنية المباشرة بمتاجر لاند مارك.` :
+        `The customer is seeking objective validation or technical parameters regarding '${cleanInput}' due to a lack of immediate frontline technical enablements on the Landmark floor.`,
+      recommendedIntervention: isAr ? 
+        `تطبيق بروتوكول المبيعات المساعدة الفوري لعلاج استفسار العميل بخصوص "${cleanInput}". توجيه الموظفين لتقديم معايير SOP الفنية المعتمدة.` :
+        `Deploy an active Landmark assisted-selling floor protocol to address '${cleanInput}'. Instruct associates to present our approved technical specification cards.`,
+      roadmap: {
+        day1: isAr ? "توجيه الموظفين صباحاً وتجهيز بطاقات المواصفات الفنية للقسم." : "Align associates in the morning stand-up and deploy technical battle-cards on the floor.",
+        week1: isAr ? "تنفيذ حصص تدريبية مصغرة على معايير SOP في صالة العرض." : "Execute daily floor micro-coaching huddles on category specifications compliance.",
+        longTerm: isAr ? "تنفيذ تدقيق شامل لكفاءة الخطوط الأمامية خلال 30-60-90 يوماً." : "Review regional multi-brand L&D capabilities and trace conversion gains in a 30-60-90 day audit."
+      },
+      toolsFrameworks: isAr ? "دليل تشغيل لاند مارك للخطوط الأمامية، بطاقات المواصفات الفنية للفرع." : "Landmark Frontline Category Standard Operations, Competitor Spec Battle-Card.",
+      successMetrics: isAr ? "زيادة المبيعات بنسبة +10%، وارتفاع مؤشر ATV بنسبة +8%." : "+10% Floor compliance improvement, +8% Average Transaction Value (ATV) lift.",
+      replyText: isAr ? 
+        `رؤية استشارية: الاستفسار بخصوص "${cleanInput}" يتطلب بيعاً مساعداً فورياً. طبّق تدريب الخطوط الأمامية لتأمين السلة.` :
+        `Advisory insight: Frontline capability is our differentiator. Deploy category SOP and specification huddles immediately to secure basket conversions.`
     };
   }
 
@@ -973,10 +1017,7 @@ function getMckinseyResponse(input) {
 
 function getCoachResponse(input) {
   const mck = getMckinseyResponse(input);
-  const isAr = currentLanguage === 'ar';
-  return isAr ? 
-    `${mck.actions[0]} ${mck.actions[1]} ${mck.actions[2]} والأسباب هي: ${mck.rootCause}` :
-    `${mck.actions[0]} ${mck.actions[1]} ${mck.actions[2]} The root cause is: ${mck.rootCause}`;
+  return mck.replyText || mck.spokenText;
 }
 
 // --------------------------------------------------------------------------
@@ -1296,6 +1337,42 @@ function renderAnalyticsCharts(canvasVolume, canvasObjections, canvasPersonaliti
   }
 }
 
+async function fetchRAGResponse(userText, personality, lang) {
+  try {
+    const response = await fetch('/api/coach', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        text: userText,
+        personality: personality,
+        lang: lang
+      })
+    });
+    
+    if (response.ok) {
+      const data = await response.json();
+      if (data.status === 'success') {
+        return {
+          executiveInsight: data.executiveInsight,
+          rootCause: data.rootCause,
+          recommendedIntervention: data.recommendedIntervention,
+          roadmap: data.roadmap,
+          toolsFrameworks: data.toolsFrameworks,
+          successMetrics: data.successMetrics,
+          source: data.source,
+          spokenText: data.spokenText,
+          score: data.score
+        };
+      }
+    }
+  } catch (err) {
+    console.warn("RAG coach backend error, using offline response:", err);
+  }
+  return null;
+}
+
 // --------------------------------------------------------------------------
 // 5. Global App Coordinator & Routing
 // --------------------------------------------------------------------------
@@ -1317,6 +1394,155 @@ let chatHistory = {
 const els = {};
 
 function initDOMElements() {
+  // Inject custom consultant styles into head
+  if (!document.getElementById('consultant-styles-override')) {
+    const style = document.createElement('style');
+    style.id = 'consultant-styles-override';
+    style.textContent = `
+      /* Custom Retail Consultant Theme Styling overrides */
+      .consultant-theme.mck-deck-title {
+        border-bottom: 2px solid #b45309 !important;
+        color: #b45309 !important;
+        font-weight: 900 !important;
+        margin-bottom: 12px !important;
+      }
+      .consultant-theme.mck-deck-title i {
+        color: #b45309 !important;
+      }
+      
+      .consultant-insight-card {
+        background: linear-gradient(135deg, #fef3c7, #fffbeb) !important;
+        border-left: 5px solid #d97706 !important;
+        border-radius: 12px !important;
+        padding: 16px !important;
+        margin-bottom: 14px !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+        transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+        text-align: inherit !important;
+      }
+      .consultant-insight-card:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 12px -3px rgba(0, 0, 0, 0.1) !important;
+      }
+      .consultant-card-header {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        margin-bottom: 8px !important;
+      }
+      .consultant-card-header i {
+        font-size: 16px !important;
+      }
+      .consultant-card-header h4 {
+        font-size: 14px !important;
+        font-weight: 800 !important;
+        color: #78350f !important;
+        margin: 0 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+      }
+      .insight-accent i {
+        color: #d97706 !important;
+      }
+      .consultant-insight-text {
+        font-size: 13.5px !important;
+        color: #451a03 !important;
+        line-height: 1.5 !important;
+        margin: 0 !important;
+        font-weight: 500 !important;
+      }
+      
+      .mck-card.consultant-theme {
+        border-top: 4px solid #b45309 !important;
+      }
+      .mck-card.consultant-theme .mck-card-header i {
+        color: #b45309 !important;
+      }
+      
+      .consultant-roadmap-card {
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+        border-top: 4px solid #3b82f6 !important;
+        border-radius: 12px !important;
+        padding: 16px !important;
+        margin-top: 14px !important;
+        margin-bottom: 14px !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05) !important;
+        text-align: inherit !important;
+      }
+      .roadmap-accent i {
+        color: #3b82f6 !important;
+      }
+      .roadmap-accent h4 {
+        color: #1e3a8a !important;
+      }
+      .roadmap-horizontal-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr 1fr !important;
+        gap: 12px !important;
+        margin-top: 10px !important;
+      }
+      @media (max-width: 640px) {
+        .roadmap-horizontal-grid {
+          grid-template-columns: 1fr !important;
+          gap: 16px !important;
+        }
+      }
+      .roadmap-step {
+        background: var(--white) !important;
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 8px !important;
+        padding: 12px !important;
+        position: relative !important;
+        min-height: 80px !important;
+      }
+      .roadmap-step p {
+        font-size: 12px !important;
+        color: var(--slate-600) !important;
+        line-height: 1.4 !important;
+        margin: 0 !important;
+        margin-top: 24px !important;
+      }
+      .step-badge {
+        position: absolute !important;
+        top: 8px !important;
+        left: 8px !important;
+        background: #eff6ff !important;
+        color: #1e40af !important;
+        font-weight: 800 !important;
+        font-size: 11px !important;
+        padding: 2px 8px !important;
+        border-radius: 4px !important;
+        text-transform: uppercase !important;
+      }
+      [dir="rtl"] .step-badge {
+        left: auto !important;
+        right: 8px !important;
+      }
+      
+      .mck-card.border-blue {
+        border-top: 4px solid #2563eb !important;
+      }
+      .header-blue i {
+        color: #2563eb !important;
+      }
+      .header-blue h4 {
+        color: #1e3a8a !important;
+      }
+      
+      .mck-card.border-gold {
+        border-top: 4px solid #ca8a04 !important;
+      }
+      .header-gold i {
+        color: #ca8a04 !important;
+      }
+      .header-gold h4 {
+        color: #713f12 !important;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   els.html = document.documentElement;
   els.body = document.body;
   
@@ -1721,9 +1947,9 @@ function renderFAQs(tabName) {
   }
 }
 
-function triggerVoiceCoachSpeech(heading, text) {
+function triggerVoiceCoachSpeech(heading, text, mckInput) {
   const isAr = currentLanguage === 'ar';
-  const mck = getMckinseyResponse(heading);
+  const mck = mckInput || getMckinseyResponse(heading);
   
   els.voiceObjectionPrompt.textContent = heading;
   
@@ -1734,43 +1960,98 @@ function triggerVoiceCoachSpeech(heading, text) {
   els.voiceGreeting.style.margin = "0 auto 24px auto";
   els.voiceGreeting.style.maxWidth = "860px";
   
+  const citationHtml = mck.source ? `
+    <div class="mck-source-citation" style="margin-top: 16px; display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: rgba(4, 120, 87, 0.06); border: 1px solid rgba(4, 120, 87, 0.15); border-radius: 8px; font-size: 12px; color: var(--primary); font-weight: 600; text-align: left;">
+      <i class="fas fa-book-reader"></i>
+      <span>${isAr ? "المصدر لقاعدة المعرفة:" : "Knowledge Base Source:"} ${mck.source}</span>
+    </div>
+  ` : '';
+
   els.voiceGreeting.innerHTML = `
-    <div class="mck-deck-title">
-      <i class="fas fa-layer-group"></i>
-      <span>${isAr ? "تحليل المبيعات - منهجية ماكينزي" : "Sales Insight - McKinsey Framework"}</span>
+    <!-- Executive Title Block -->
+    <div class="mck-deck-title consultant-theme">
+      <i class="fas fa-briefcase"></i>
+      <span>${isAr ? "تحول التجزئة الاستشاري - مجموعة لاند مارك" : "Retail Transformation Advisory - Landmark Group"}</span>
     </div>
     
-    <div class="mck-grid">
-      <div class="mck-card mck-actions">
-        <div class="mck-card-header">
-          <i class="fas fa-bolt"></i>
-          <h4>${isAr ? "إجراء فوري / مدخلات مباشرة" : "Immediate Actions / Direct Inputs"}</h4>
-        </div>
-        <ul class="mck-action-list">
-          <li><span class="num-badge">1</span> ${mck.actions[0]}</li>
-          <li><span class="num-badge">2</span> ${mck.actions[1]}</li>
-          <li><span class="num-badge">3</span> ${mck.actions[2]}</li>
-        </ul>
+    <!-- Module 1: Executive Insight -->
+    <div class="consultant-insight-card">
+      <div class="consultant-card-header insight-accent">
+        <i class="fas fa-lightbulb"></i>
+        <h4>${isAr ? "رؤية استشارية تنفيذية" : "Executive Insight"}</h4>
       </div>
-      
-      <div class="mck-card mck-root-cause">
+      <p class="consultant-insight-text">${mck.executiveInsight}</p>
+    </div>
+    
+    <!-- Module 2 & 3: Root Cause & Intervention Grid -->
+    <div class="mck-grid">
+      <div class="mck-card mck-root-cause consultant-theme">
         <div class="mck-card-header">
           <i class="fas fa-search-plus"></i>
-          <h4>${isAr ? "تحليل الأسباب الجذرية للمشكلة" : "Root Cause Analysis"}</h4>
+          <h4>${isAr ? "تحليل الأسباب الجذرية" : "Root Cause Analysis"}</h4>
         </div>
         <div class="mck-root-cause-content">
           <p>${mck.rootCause}</p>
         </div>
       </div>
+      
+      <div class="mck-card mck-actions consultant-theme">
+        <div class="mck-card-header">
+          <i class="fas fa-bolt"></i>
+          <h4>${isAr ? "التدخل الميداني المقترح" : "Recommended Intervention"}</h4>
+        </div>
+        <div class="mck-root-cause-content">
+          <p>${mck.recommendedIntervention}</p>
+        </div>
+      </div>
     </div>
     
-    <div class="mck-banner-card">
-      <div class="mck-banner-header">
-        <i class="far fa-lightbulb"></i>
-        <h4>${isAr ? "مدخلات استراتيجية إضافية" : "Strategic Additional Inputs"}</h4>
+    <!-- Module 4: Execution Roadmap -->
+    <div class="consultant-roadmap-card">
+      <div class="consultant-card-header roadmap-accent">
+        <i class="fas fa-road"></i>
+        <h4>${isAr ? "خارطة طريق التنفيذ (Intervention Roadmap)" : "Execution Roadmap"}</h4>
       </div>
-      <p>${mck.additional}</p>
+      <div class="roadmap-horizontal-grid">
+        <div class="roadmap-step">
+          <span class="step-badge">Day 1</span>
+          <p>${mck.roadmap.day1}</p>
+        </div>
+        <div class="roadmap-step">
+          <span class="step-badge">Week 1</span>
+          <p>${mck.roadmap.week1}</p>
+        </div>
+        <div class="roadmap-step">
+          <span class="step-badge">30-60-90</span>
+          <p>${mck.roadmap.longTerm}</p>
+        </div>
+      </div>
     </div>
+    
+    <!-- Module 5 & 6: Tools & Metrics Grid -->
+    <div class="mck-grid" style="margin-top: 16px;">
+      <div class="mck-card consultant-theme border-blue">
+        <div class="mck-card-header header-blue">
+          <i class="fas fa-tools"></i>
+          <h4>${isAr ? "أدوات وتمكين الأداء" : "Tools / Scripts / Frameworks"}</h4>
+        </div>
+        <div class="mck-root-cause-content">
+          <p>${mck.toolsFrameworks}</p>
+        </div>
+      </div>
+      
+      <div class="mck-card consultant-theme border-gold">
+        <div class="mck-card-header header-gold">
+          <i class="fas fa-chart-line"></i>
+          <h4>${isAr ? "مؤشرات قياس النجاح" : "Success Metrics"}</h4>
+        </div>
+        <div class="mck-root-cause-content">
+          <p>${mck.successMetrics}</p>
+        </div>
+      </div>
+    </div>
+    
+    ${citationHtml}
   `;
   
   speakText(text, selectedGender, 
@@ -1793,9 +2074,22 @@ function handleMicClick() {
 
     els.voiceStatus.textContent = translations[currentLanguage].micProcessing;
     
-    setTimeout(() => {
-      const answer = getCoachResponse(resultText);
-      triggerVoiceCoachSpeech(resultText, answer);
+    setTimeout(async () => {
+      // Call RAG first
+      const ragResponse = await fetchRAGResponse(resultText, selectedPersonality, currentLanguage);
+      let mck;
+      let replyText;
+      
+      if (ragResponse) {
+        mck = ragResponse;
+        replyText = ragResponse.spokenText;
+      } else {
+        // Fallback
+        mck = getMckinseyResponse(resultText);
+        replyText = getCoachResponse(resultText);
+      }
+      
+      triggerVoiceCoachSpeech(resultText, replyText, mck);
       els.voiceStatus.textContent = translations[currentLanguage].micTapToTalk;
     }, 1000);
   };
@@ -1915,43 +2209,99 @@ function renderChatHistory() {
         const mck = msg.mckinsey;
         const isAr = currentLanguage === 'ar';
         bubble.className = `chat-bubble coach mck-deck-bubble`;
+        
+        const citationHtml = mck.source ? `
+          <div class="mck-source-citation" style="margin-top: 16px; display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: rgba(4, 120, 87, 0.06); border: 1px solid rgba(4, 120, 87, 0.15); border-radius: 8px; font-size: 12px; color: var(--primary); font-weight: 600; text-align: left;">
+            <i class="fas fa-book-reader"></i>
+            <span>${isAr ? "المصدر لقاعدة المعرفة:" : "Knowledge Base Source:"} ${mck.source}</span>
+          </div>
+        ` : '';
+
         bubble.innerHTML = `
-          <div class="mck-deck-title">
-            <i class="fas fa-layer-group"></i>
-            <span>${isAr ? "تحليل المبيعات - منهجية ماكينزي" : "Sales Insight - McKinsey Framework"}</span>
+          <!-- Executive Title Block -->
+          <div class="mck-deck-title consultant-theme">
+            <i class="fas fa-briefcase"></i>
+            <span>${isAr ? "تحول التجزئة الاستشاري - مجموعة لاند مارك" : "Retail Transformation Advisory - Landmark Group"}</span>
           </div>
           
-          <div class="mck-grid">
-            <div class="mck-card mck-actions">
-              <div class="mck-card-header">
-                <i class="fas fa-bolt"></i>
-                <h4>${isAr ? "إجراء فوري / مدخلات مباشرة" : "Immediate Actions / Direct Inputs"}</h4>
-              </div>
-              <ul class="mck-action-list">
-                <li><span class="num-badge">1</span> ${mck.actions[0]}</li>
-                <li><span class="num-badge">2</span> ${mck.actions[1]}</li>
-                <li><span class="num-badge">3</span> ${mck.actions[2]}</li>
-              </ul>
+          <!-- Module 1: Executive Insight -->
+          <div class="consultant-insight-card">
+            <div class="consultant-card-header insight-accent">
+              <i class="fas fa-lightbulb"></i>
+              <h4>${isAr ? "رؤية استشارية تنفيذية" : "Executive Insight"}</h4>
             </div>
-            
-            <div class="mck-card mck-root-cause">
+            <p class="consultant-insight-text">${mck.executiveInsight}</p>
+          </div>
+          
+          <!-- Module 2 & 3: Root Cause & Intervention Grid -->
+          <div class="mck-grid">
+            <div class="mck-card mck-root-cause consultant-theme">
               <div class="mck-card-header">
                 <i class="fas fa-search-plus"></i>
-                <h4>${isAr ? "تحليل الأسباب الجذرية للمشكلة" : "Root Cause Analysis"}</h4>
+                <h4>${isAr ? "تحليل الأسباب الجذرية" : "Root Cause Analysis"}</h4>
               </div>
               <div class="mck-root-cause-content">
                 <p>${mck.rootCause}</p>
               </div>
             </div>
+            
+            <div class="mck-card mck-actions consultant-theme">
+              <div class="mck-card-header">
+                <i class="fas fa-bolt"></i>
+                <h4>${isAr ? "التدخل الميداني المقترح" : "Recommended Intervention"}</h4>
+              </div>
+              <div class="mck-root-cause-content">
+                <p>${mck.recommendedIntervention}</p>
+              </div>
+            </div>
           </div>
           
-          <div class="mck-banner-card">
-            <div class="mck-banner-header">
-              <i class="far fa-lightbulb"></i>
-              <h4>${isAr ? "مدخلات استراتيجية إضافية" : "Strategic Additional Inputs"}</h4>
+          <!-- Module 4: Execution Roadmap -->
+          <div class="consultant-roadmap-card">
+            <div class="consultant-card-header roadmap-accent">
+              <i class="fas fa-road"></i>
+              <h4>${isAr ? "خارطة طريق التنفيذ (Intervention Roadmap)" : "Execution Roadmap"}</h4>
             </div>
-            <p>${mck.additional}</p>
+            <div class="roadmap-horizontal-grid">
+              <div class="roadmap-step">
+                <span class="step-badge">Day 1</span>
+                <p>${mck.roadmap.day1}</p>
+              </div>
+              <div class="roadmap-step">
+                <span class="step-badge">Week 1</span>
+                <p>${mck.roadmap.week1}</p>
+              </div>
+              <div class="roadmap-step">
+                <span class="step-badge">30-60-90</span>
+                <p>${mck.roadmap.longTerm}</p>
+              </div>
+            </div>
           </div>
+          
+          <!-- Module 5 & 6: Tools & Metrics Grid -->
+          <div class="mck-grid" style="margin-top: 16px;">
+            <div class="mck-card consultant-theme border-blue">
+              <div class="mck-card-header header-blue">
+                <i class="fas fa-tools"></i>
+                <h4>${isAr ? "أدوات وتمكين الأداء" : "Tools / Scripts / Frameworks"}</h4>
+              </div>
+              <div class="mck-root-cause-content">
+                <p>${mck.toolsFrameworks}</p>
+              </div>
+            </div>
+            
+            <div class="mck-card consultant-theme border-gold">
+              <div class="mck-card-header header-gold">
+                <i class="fas fa-chart-line"></i>
+                <h4>${isAr ? "مؤشرات قياس النجاح" : "Success Metrics"}</h4>
+              </div>
+              <div class="mck-root-cause-content">
+                <p>${mck.successMetrics}</p>
+              </div>
+            </div>
+          </div>
+          
+          ${citationHtml}
         `;
       } else {
         bubble.textContent = msg.text;
@@ -2007,12 +2357,24 @@ function handleUserTextMessage(userText) {
   els.chatBody.appendChild(typing);
   els.chatBody.scrollTop = els.chatBody.scrollHeight;
   
-  setTimeout(() => {
+  setTimeout(async () => {
     const typingIndicator = document.getElementById('chat-typing-indicator');
     if (typingIndicator) typingIndicator.remove();
     
-    const replyText = getCoachResponse(userText);
-    const mck = getMckinseyResponse(userText);
+    // Call RAG first
+    const ragResponse = await fetchRAGResponse(userText, selectedPersonality, currentLanguage);
+    let mck;
+    let replyText;
+    
+    if (ragResponse) {
+      mck = ragResponse;
+      replyText = ragResponse.spokenText;
+    } else {
+      // Fallback
+      mck = getMckinseyResponse(userText);
+      replyText = getCoachResponse(userText);
+    }
+    
     chatHistory[currentLanguage].push({ sender: 'coach', text: replyText, mckinsey: mck });
     renderChatHistory();
   }, 1000);
@@ -2163,12 +2525,23 @@ function finalizeChatVoiceNote(audioUrl, elapsedSeconds) {
   els.chatBody.appendChild(typing);
   els.chatBody.scrollTop = els.chatBody.scrollHeight;
   
-  setTimeout(() => {
+  setTimeout(async () => {
     const typingIndicator = document.getElementById('chat-typing-indicator');
     if (typingIndicator) typingIndicator.remove();
     
-    const replyText = getCoachResponse(text);
-    const mck = getMckinseyResponse(text);
+    // Call RAG first
+    const ragResponse = await fetchRAGResponse(text, selectedPersonality, currentLanguage);
+    let mck;
+    let replyText;
+    
+    if (ragResponse) {
+      mck = ragResponse;
+      replyText = ragResponse.spokenText;
+    } else {
+      // Fallback
+      mck = getMckinseyResponse(text);
+      replyText = getCoachResponse(text);
+    }
     
     const replyVnId = Date.now() + 1;
     chatHistory[currentLanguage].push({
@@ -2428,8 +2801,25 @@ function loadSampleShelf() {
   triggerShelfScan();
 }
 
-function renderDocumentsTable() {
+async function renderDocumentsTable() {
   els.docTableBody.innerHTML = "";
+  
+  // Try fetching documents from real RAG backend
+  try {
+    const response = await fetch('/api/kb/documents');
+    if (response.ok) {
+      const serverDocs = await response.json();
+      if (serverDocs && serverDocs.length > 0) {
+        documentList = serverDocs;
+        try {
+          localStorage.setItem('retail_sales_pro_kb_docs', JSON.stringify(documentList));
+        } catch(e) {}
+      }
+    }
+  } catch (err) {
+    console.warn("RAG server unreachable, using offline documentList:", err);
+  }
+  
   const docs = documentList;
   const dict = translations[currentLanguage];
   
@@ -2463,7 +2853,7 @@ function renderDocumentsTable() {
         <span class="lang-badge ${langBadgeClass}">${translatedLang}</span>
       </td>
       <td>
-        <button class="user-profile-btn btn-delete-doc" data-id="${doc.id}">
+        <button class="user-profile-btn btn-delete-doc" data-id="${doc.id}" data-name="${doc.name}">
           <i class="fas fa-trash-alt"></i>
         </button>
       </td>
@@ -2472,15 +2862,29 @@ function renderDocumentsTable() {
   });
   
   document.querySelectorAll('.btn-delete-doc').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
       const id = parseInt(btn.getAttribute('data-id'));
+      const name = btn.getAttribute('data-name');
+      
+      // Try backend delete
+      try {
+        const response = await fetch(`/api/kb/documents/${encodeURIComponent(name)}`, {
+          method: 'DELETE'
+        });
+        if (response.ok) {
+          console.log(`RAG backend successfully deleted ${name}`);
+        }
+      } catch (err) {
+        console.warn("RAG backend delete failed, falling back to local deletion:", err);
+      }
+      
       deleteDocument(id);
       renderDocumentsTable();
     });
   });
 }
 
-function handleAddDocSubmit(e) {
+async function handleAddDocSubmit(e) {
   e.preventDefault();
   if (!tempUploadedFile) {
     alert(currentLanguage === 'ar' ? "الرجاء اختيار ملف أولاً!" : "Please select a file first!");
@@ -2507,8 +2911,28 @@ function handleAddDocSubmit(e) {
   
   const lang = currentLanguage === 'ar' ? "ARABIC" : "ENGLISH";
   
+  // Try uploading to RAG backend
+  try {
+    const formData = new FormData();
+    formData.append("file", tempUploadedFile);
+    
+    els.modalUploadText.textContent = currentLanguage === 'ar' ? "جاري الرفع والفهرسة..." : "Uploading and indexing...";
+    const response = await fetch('/api/kb/upload', {
+      method: 'POST',
+      body: formData
+    });
+    
+    if (response.ok) {
+      const resData = await response.json();
+      console.log("RAG backend upload success:", resData.message);
+    }
+  } catch (err) {
+    console.warn("RAG backend upload failed, falling back to local addition:", err);
+  }
+  
+  // Local addition
   addDocument(name, size, type, lang);
-  renderDocumentsTable();
+  await renderDocumentsTable();
   
   tempUploadedFile = null;
   els.modalDocFileInput.value = "";
