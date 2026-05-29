@@ -568,22 +568,57 @@
       <!-- Panel E: Settings Pane -->
       <div id="admin-pane-settings" style="display: none;">
         <h2 style="font-size: 24px; margin-bottom: 24px;">Global System Configurations</h2>
-        <div class="scan-card" style="display: flex; flex-direction: column; gap: 20px;">
+        
+        <div class="scan-card" style="display: flex; flex-direction: column; gap: 20px; padding: 24px; background: white; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+          <h3 style="margin-top: 0; font-size: 18px; color: var(--primary); display: flex; align-items: center; gap: 8px;">
+            <i class="fas fa-brain"></i> Dynamic LLM & RAG Configuration
+          </h3>
+          <p class="text-muted" style="margin-top: -8px; font-size: 13px;">Enable dynamic, hyper-intelligent retail consultant synthesis by connecting your preferred LLM provider directly to the Knowledge Base index.</p>
+          
           <div class="form-group">
-            <label>RAG Model Version</label>
-            <select class="form-input" style="background: white;">
-              <option>Gemini 1.5 Pro (Default)</option>
-              <option>Gemini 1.5 Flash (Low-Latency)</option>
+            <label style="font-weight: 600; display: block; margin-bottom: 6px;">AI Provider</label>
+            <select class="form-input" id="llm-provider-select" style="background: white; border: 1px solid var(--slate-200); border-radius: 8px; padding: 10px; width: 100%;">
+              <option value="offline">Offline / Rule-based Template (Default)</option>
+              <option value="gemini">Google Gemini API (Highly Recommended)</option>
+              <option value="openai">OpenAI ChatGPT API</option>
             </select>
           </div>
-          <div class="form-group">
-            <label>Confidence Threshold</label>
-            <input type="range" min="0" max="100" value="85" style="width: 100%; cursor: pointer;">
-            <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--slate-400); margin-top: 4px;">
-              <span>0% (Relaxed)</span>
-              <span>85% (Optimal)</span>
-              <span>100% (Strict)</span>
+          
+          <div class="form-group" id="llm-model-group">
+            <label style="font-weight: 600; display: block; margin-bottom: 6px;">Model Version</label>
+            <select class="form-input" id="llm-model-select" style="background: white; border: 1px solid var(--slate-200); border-radius: 8px; padding: 10px; width: 100%;">
+              <option value="gemini-1.5-flash">gemini-1.5-flash (Fast & Optimized)</option>
+              <option value="gemini-1.5-pro">gemini-1.5-pro (Advanced Reasoning)</option>
+              <option value="gpt-4o-mini">gpt-4o-mini (Rapid & Cost-Effective)</option>
+              <option value="gpt-4o">gpt-4o (Premium Performance)</option>
+            </select>
+          </div>
+          
+          <div class="form-group" id="llm-key-group">
+            <label style="font-weight: 600; display: block; margin-bottom: 6px;">Secure API Key</label>
+            <div style="position: relative; display: flex; align-items: center;">
+              <input type="password" class="form-input" id="llm-api-key-input" placeholder="Paste your API key here (saved securely on the server)..." style="border: 1px solid var(--slate-200); border-radius: 8px; padding: 10px; width: 100%; padding-right: 40px;">
+              <button type="button" id="btn-toggle-key-visibility" style="position: absolute; right: 10px; background: none; border: none; cursor: pointer; color: var(--slate-400); font-size: 16px;">
+                <i class="far fa-eye" id="key-visibility-icon"></i>
+              </button>
             </div>
+          </div>
+          
+          <div style="display: flex; align-items: center; margin-top: 10px;">
+            <button id="btn-save-llm-settings" class="scan-btn primary-green" style="padding: 10px 20px; font-weight: 600; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
+              <i class="fas fa-save"></i> Save Configuration
+            </button>
+            <span id="llm-settings-status" style="margin-left: 16px; font-size: 13px; font-weight: 600;"></span>
+          </div>
+        </div>
+
+        <div class="scan-card" style="margin-top: 24px; padding: 20px; background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.15); border-radius: 12px; display: flex; gap: 16px; align-items: flex-start;">
+          <div style="background: var(--primary); color: white; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div>
+            <h4 style="margin: 0 0 4px 0; color: var(--primary); font-size: 15px; font-weight: 600;">Secure Key Storage Compliance</h4>
+            <p class="text-muted" style="margin: 0; font-size: 12.5px; line-height: 1.5;">API credentials are stored locally inside `llm_config.json` on the host machine. Credentials are masked in the browser and never leaked to git repos or static client code.</p>
           </div>
         </div>
       </div>
