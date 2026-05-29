@@ -987,28 +987,103 @@ function getMckinseyResponse(input) {
 
   if (matchedKey === "default") {
     const isAr = currentLanguage === 'ar';
-    const cleanInput = input.replace(/["'<>]/g, "");
     
+    // Check keywords for Customer Service / Complaint
+    if (normalized.includes("angry") || normalized.includes("complaint") || normalized.includes("upset") || normalized.includes("furious") || normalized.includes("return") || normalized.includes("refund") || normalized.includes("rude") || normalized.includes("issue") || normalized.includes("customer service") || normalized.includes("مشتكي") || normalized.includes("غاضب") || normalized.includes("زعلان") || normalized.includes("مشكلة") || normalized.includes("عميل") || normalized.includes("شكوى")) {
+      return {
+        executiveInsight: isAr ? 
+          "بصفتي مستشاراً أولاً بـ 20 عاماً من الخبرة، فإن التعامل مع شكاوى العملاء يتطلب بروتوكولاً نظامياً فورياً للاحتفاظ بالعميل وحماية سمعة العلامة التجارية." :
+          "As a Senior Retail Transformation Consultant with 20+ years of experience, I diagnose that frontline conflict resolution requires a systematic service recovery protocol to protect customer retention.",
+        rootCause: isAr ? 
+          "تتصاعد الأزمات عندما يفتقر بائعو صالة العرض للصلاحيات الكافية للتعامل المرن ومهارات احتواء الغضب تحت الضغط." :
+          "Conflict often escalates when frontline teams lack clear de-escalation authority and empathy training, leading to cognitive friction during high-stress customer recovery touchpoints.",
+        recommendedIntervention: isAr ? 
+          "تطبيق بروتوكول الخدمة الفوري (الاستماع، التعاطف، الاعتذار، الحل، الشكر). تمكين الموظفين بصلاحيات تسوية مباشرة لحل المشكلات في صالة العرض." :
+          "Deploy the de-escalation protocol (Listen, Empathize, Apologize, Solve, Thank). Empower frontline staff with standard service resolution toolkits.",
+        roadmap: {
+          day1: isAr ? "عمل محاكاة صباحية للموظفين لتدريبهم على نصوص احتواء الغضب والتعاطف." : "Run a morning role-play on de-escalation and align on immediate service resolution limits.",
+          week1: isAr ? "مراجعة نقاط الخدمة السريعة وتبسيط إجراءات الاسترجاع والتبديل." : "Review active floor customer escalation paths and establish a service recovery zone.",
+          longTerm: isAr ? "تفعيل ورش عمل دورية لفض النزاعات وقياس رضا العملاء في 30-60-90 يوماً." : "Implement de-escalation workshops and monitor customer satisfaction scores and retention metrics in a 30-60-90 day performance review."
+        },
+        toolsFrameworks: isAr ? "دليل التعامل مع العميل الغاضب، مصفوفة صلاحيات التسوية الفورية للبائعين." : "Service de-escalation Flowchart, Frontline Empowerment Resolution Guidelines.",
+        successMetrics: isAr ? "زيادة رضا العملاء بمقدار +25%، وحل 100% من الشكاوى في أقل من 10 دقائق." : "+22% Customer Retention Rate, 100% resolution of floor complaints within 10 minutes.",
+        replyText: isAr ? 
+          "رؤية استشارية: التعامل مع غضب العميل يتطلب انضباطاً وتفهماً. طبّق بروتوكول احتواء الغضب والحل الفوري فوراً لكسب ولاء العميل." :
+          "Advisory insight: Customer complaints require de-escalation rigor. Deploy the de-escalation protocol immediately to turn a service failure into a loyalty opportunity."
+      };
+    }
+    
+    // Check keywords for Suggestive Selling / ATV / IPT
+    if (normalized.includes("upsell") || normalized.includes("cross-sell") || normalized.includes("basket") || normalized.includes("atv") || normalized.includes("ipt") || normalized.includes("more sales") || normalized.includes("average ticket") || normalized.includes("بيع") || normalized.includes("ترقية") || normalized.includes("شراء") || normalized.includes("سلة") || normalized.includes("مبيعات") || normalized.includes("أرباح") || normalized.includes("زيادة")) {
+      return {
+        executiveInsight: isAr ? 
+          "بصفتي مستشاراً أولاً بـ 20 عاماً من الخبرة، فإن زيادة متوسط قيمة المعاملة (ATV) يتطلب بروتوكولاً موحداً للاقتراح الذكي والربط البصري للمنتجات." :
+          "As a Senior Retail Transformation Consultant with 20+ years of experience, I diagnose that maximizing the average transaction value requires structured add-on routines and visual pairing rigor.",
+        rootCause: isAr ? 
+          "يركز البائعون على إتمام المعاملة الأساسية فقط دون عرض خيارات إضافية، بسبب نقص المهارة في سرد قصة المنتج المتكاملة." :
+          "Frontline teams frequently execute transactional order-taking rather than suggestive selling, due to a lack of confidence in product pairings and raw cross-selling scripts.",
+        recommendedIntervention: isAr ? 
+          "تطبيق بروتوكول 'قاعدة الثلاثة للبيع المترابط'. تدريب الموظفين على اقتراح قطعة تكميلية وإكسسوار متناسق مع كل منتج أساسي يتم اختياره." :
+          "Deploy the suggestive pairing protocol. Train associates to suggest a complementary accessory and a premium upgrade for every hero item carried to the fitting room.",
+        roadmap: {
+          day1: isAr ? "تدريب الموظفين صباحاً على مجموعات الربط المقترحة لهذا الأسبوع." : "Align on daily cross-sell pairing targets in the morning huddle and show pairing combinations.",
+          week1: isAr ? "تنسيق عروض الربط البصري المزدوج في مناطق غرف القياس ومنصات الدفع." : "Create visible physical bundle displays at checkout and dressing room zones.",
+          longTerm: isAr ? "إطلاق مسابقات داخلية لتحفيز الموظفين على زيادة IPT والتحليل في 30-60-90 يوماً." : "Run gamified sales competitions on items-per-transaction (IPT) and review conversion trends in a 30-60-90 day review."
+        },
+        toolsFrameworks: isAr ? "دليل البيع المترابط والربط الفئوي، مصفوفة الاقتراحات المعتمدة عند الكاشير." : "Suggestive Selling & Pairing Matrix, Fitting Room Suggestion Playbook.",
+        successMetrics: isAr ? "ارتفاع ATV بنسبة +12%، وزيادة في مبيعات القطع الإضافية بمقدار +15%." : "+12% Average Transaction Value (ATV) lift, +15% incremental cross-sell conversions.",
+        replyText: isAr ? 
+          "رؤية استشارية: البيع الاقتراحي هو جوهر نمو السلة. طبّق نصوص البيع المترابط ومجموعات الربط البصري فوراً لتعظيم القيمة." :
+          "Advisory insight: Suggested selling is a discipline. Deploy suggestive pairing scripts immediately on the floor to multiply checkout values."
+      };
+    }
+
+    // Check keywords for Motivation / Huddles
+    if (normalized.includes("motivate") || normalized.includes("motivation") || normalized.includes("huddle") || normalized.includes("morale") || normalized.includes("team") || normalized.includes("energy") || normalized.includes("spirit") || normalized.includes("disappointed") || normalized.includes("coach") || normalized.includes("تحفيز") || normalized.includes("حماس") || normalized.includes("فريق") || normalized.includes("روح") || normalized.includes("اجتماع") || normalized.includes("تنشيط") || normalized.includes("كفاءة")) {
+      return {
+        executiveInsight: isAr ? 
+          "بصفتي مستشاراً أولاً بـ 20 عاماً من الخبرة، فإن الأداء العالي للمتجر يبدأ من تحويل الاجتماعات الصباحية إلى منصات تحفيزية وتكريمات تفاعلية مصغرة." :
+          "As a Senior Retail Transformation Consultant with 20+ years of experience, I diagnose that high store performance is directly driven by gamified morning standups and micro-recognition huddles.",
+        rootCause: isAr ? 
+          "التكرار اليومي وضغط العمل المستمر يستنزف طاقة الموظفين. تركز الاجتماعات التقليدية على الأرقام الجافة دون تقدير الإنجازات اليومية البسيطة." :
+          "Frontline fatigue and repetitive routines erode energy levels. Standard huddles focus heavily on compliance metrics rather than visual wins, energy boosts, and positive reinforcement.",
+        recommendedIntervention: isAr ? 
+          "تطبيق بروتوكول 'الاجتماع التنشيطي السريع' (5 دقائق: ترحيب تفاعلي، تركيز يومي محدد، تكريم بائع متميز من قبل زملائه)." :
+          "Deploy the Pulse-Huddle SOP (5 minutes: high-five energizer, 1 daily key focus, 1 peer-to-peer visual win recognition). Implement rotating huddle leaders.",
+        roadmap: {
+          day1: isAr ? "إعادة تصميم الاجتماع الصباحي ليكون تفاعلياً وقصيراً ولا يتجاوز 5 دقائق." : "Transform the morning stand-up into a 5-minute interactive, high-energy briefing.",
+          week1: isAr ? "تأسيس لوحة 'أبطال الأسبوع' في منطقة استراحة الموظفين لعرض الإنجازات." : "Establish a visible 'Wall of Wins' card display in the staff backroom.",
+          longTerm: isAr ? "تدريب المشرفين على مهارات التحفيز والتمكين الذاتي ومتابعة أثرها في 30-60-90 يوماً." : "Conduct leadership workshops on micro-coaching and link monthly incentive visibility in a 30-60-90 day performance huddle."
+        },
+        toolsFrameworks: isAr ? "دليل إدارة الاجتماعات التنشيطية السريعة، بطاقات التقدير المتبادل بين الفريق." : "Daily Pulse-Huddle SOP Flowchart, Peer-to-Peer Appreciation Cards.",
+        successMetrics: isAr ? "تحسين مشاركة ورضا الموظفين بنسبة +30%، والتزام كامل بالاجتماع الصباحي اليومي." : "+30% Staff engagement score, 100% daily stand-up compliance.",
+        replyText: isAr ? 
+          "رؤية استشارية: حماس الفريق ينعكس مباشرة على العميل. طبّق بروتوكول الاجتماع التنشيطي السريع غداً لشحن معنويات موظفي صالة العرض." :
+          "Advisory insight: Store energy is customer energy. Run the interactive huddle SOP starting tomorrow morning to drive floor momentum."
+      };
+    }
+
+    // Default Fallback: Visual Merchandising & Floor Operations
     return {
       executiveInsight: isAr ? 
-        `بصفتي مستشاراً أولاً بـ 20 عاماً من الخبرة، يتطلب الاستفسار عن "${cleanInput}" تمكيناً فورياً وتدريباً للخطوط الأمامية لرفع الكفاءة التشغيلية بالخليج.` :
-        `As a Senior Retail Transformation Consultant with 20+ years of experience, I diagnose that this inquiry regarding '${cleanInput}' demands a structured frontline capability intervention to boost operations.`,
+        "بصفتي مستشاراً أولاً بـ 20 عاماً من الخبرة، فإن إنتاجية صالة العرض تعتمد على الالتزام البصري الصارم ومراقبة نقاط الجذب الترويجية باستمرار." :
+        "As a Senior Retail Transformation Consultant with 20+ years of experience, I diagnose that floor productivity is optimized through strict category flow compliance and visual hot-spot replenishment.",
       rootCause: isAr ? 
-        `يبحث العميل عن تحقق معرفي أو إجرائي بخصوص "${cleanInput}". يرجع ذلك لغياب الانضباط وغياب بطاقات المقارنة الفنية المباشرة بمتاجر لاند مارك.` :
-        `The customer is seeking objective validation or technical parameters regarding '${cleanInput}' due to a lack of immediate frontline technical enablements on the Landmark floor.`,
+        "انشغال الموظفين بالمهام الإدارية الفرعية يلهيهم عن الحفاظ على معايير التنسيق الفني وعرض فئات السلع بطريقة مغرية." :
+        "Store teams often focus on administrative tasks rather than maintaining active visual merchandising layouts, leading to underperforming promotional spaces.",
       recommendedIntervention: isAr ? 
-        `تطبيق بروتوكول المبيعات المساعدة الفوري لعلاج استفسار العميل بخصوص "${cleanInput}". توجيه الموظفين لتقديم معايير SOP الفنية المعتمدة.` :
-        `Deploy an active Landmark assisted-selling floor protocol to address '${cleanInput}'. Instruct associates to present our approved technical specification cards.`,
+        "تطبيق تدقيق 'نقاط الجذب البصري السريع'. إعادة ترتيب المعروضات بناءً على تدفق حركة المرور والتحقق من التنسيق مرتين يومياً." :
+        "Deploy the visual compliance audit. Re-align category experiences based on standard VM flow and enforce twice-daily visual display checkouts.",
       roadmap: {
-        day1: isAr ? "توجيه الموظفين صباحاً وتجهيز بطاقات المواصفات الفنية للقسم." : "Align associates in the morning stand-up and deploy technical battle-cards on the floor.",
-        week1: isAr ? "تنفيذ حصص تدريبية مصغرة على معايير SOP في صالة العرض." : "Execute daily floor micro-coaching huddles on category specifications compliance.",
-        longTerm: isAr ? "تنفيذ تدقيق شامل لكفاءة الخطوط الأمامية خلال 30-60-90 يوماً." : "Review regional multi-brand L&D capabilities and trace conversion gains in a 30-60-90 day audit."
+        day1: isAr ? "إجراء جولة تفقدية بالفرع مع المشرفين لتحديد وإصلاح ثغرات العرض الفني فوراً." : "Perform a floor walk with supervisors to highlight secondary visual gaps and display errors.",
+        week1: isAr ? "الالتزام الكامل بدليل التنسيق البصري المعتمد لجميع عروض الواجهة والأرفف." : "Enforce standard visual guidelines for all frontline shelf placements.",
+        longTerm: isAr ? "متابعة وتقييم أداء التنسيق وعلاقته المباشرة بنمو المبيعات خلال 30-60-90 يوماً." : "Establish strict visual VM standards and monitor category sales impact during 30-60-90 day performance audits."
       },
-      toolsFrameworks: isAr ? "دليل تشغيل لاند مارك للخطوط الأمامية، بطاقات المواصفات الفنية للفرع." : "Landmark Frontline Category Standard Operations, Competitor Spec Battle-Card.",
-      successMetrics: isAr ? "زيادة المبيعات بنسبة +10%، وارتفاع مؤشر ATV بنسبة +8%." : "+10% Floor compliance improvement, +8% Average Transaction Value (ATV) lift.",
+      toolsFrameworks: isAr ? "دليل التنسيق البصري المعتمد، قائمة التدقيق اليومي لعرض فئات المنتجات." : "Standard Category VM Audit Checklist, Hot-Spot Replenishment Matrix.",
+      successMetrics: isAr ? "تحسين معايير الامتثال البصري بنسبة +10%، وارتفاع معدلات التحويل بمقدار +8%." : "+10% Floor visual compliance adherence, +8% conversion rate lift.",
       replyText: isAr ? 
-        `رؤية استشارية: الاستفسار بخصوص "${cleanInput}" يتطلب بيعاً مساعداً فورياً. طبّق تدريب الخطوط الأمامية لتأمين السلة.` :
-        `Advisory insight: Frontline capability is our differentiator. Deploy category SOP and specification huddles immediately to secure basket conversions.`
+        "رؤية استشارية: التنسيق البصري المتقن يختصر المسافة للعميل. طبّق تدقيق الامتثال البصري مرتين يومياً لحماية رونق صالة العرض." :
+        "Advisory insight: Visual discipline creates selling power. Run visual compliance checkouts twice daily to maximize category conversion."
     };
   }
 
@@ -3015,7 +3090,38 @@ function setupEventHandlers() {
   els.adminNavDocuments.addEventListener('click', () => switchAdminView('documents'));
   els.adminNavTraining.addEventListener('click', () => switchAdminView('training'));
   els.adminNavAnalytics.addEventListener('click', () => switchAdminView('analytics'));
-  els.adminNavSettings.addEventListener('click', () => switchAdminView('settings'));
+  els.adminNavSettings.addEventListener('click', () => {
+    switchAdminView('settings');
+    loadLlmSettings();
+  });
+
+  const providerSelect = document.getElementById('llm-provider-select');
+  if (providerSelect) {
+    providerSelect.addEventListener('change', (e) => {
+      toggleLlmKeyGroup(e.target.value);
+    });
+  }
+
+  const btnToggleKey = document.getElementById('btn-toggle-key-visibility');
+  const keyInput = document.getElementById('llm-api-key-input');
+  const keyVisIcon = document.getElementById('key-visibility-icon');
+  
+  if (btnToggleKey && keyInput && keyVisIcon) {
+    btnToggleKey.addEventListener('click', () => {
+      if (keyInput.type === 'password') {
+        keyInput.type = 'text';
+        keyVisIcon.className = 'far fa-eye-slash';
+      } else {
+        keyInput.type = 'password';
+        keyVisIcon.className = 'far fa-eye';
+      }
+    });
+  }
+
+  const btnSaveSettings = document.getElementById('btn-save-llm-settings');
+  if (btnSaveSettings) {
+    btnSaveSettings.addEventListener('click', saveLlmSettings);
+  }
 
   els.btnAddDoc.addEventListener('click', () => {
     tempUploadedFile = null;
@@ -3090,6 +3196,118 @@ function setupEventHandlers() {
       }
     });
   });
+}
+
+async function loadLlmSettings() {
+  const providerSelect = document.getElementById('llm-provider-select');
+  const modelSelect = document.getElementById('llm-model-select');
+  const keyInput = document.getElementById('llm-api-key-input');
+  const statusSpan = document.getElementById('llm-settings-status');
+
+  if (!providerSelect || !keyInput) return;
+
+  statusSpan.textContent = currentLanguage === 'ar' ? "جاري تحميل الإعدادات..." : "Loading configuration...";
+  statusSpan.style.color = "var(--slate-500)";
+
+  try {
+    const response = await fetch('/api/settings/llm');
+    if (response.ok) {
+      const data = await response.json();
+      providerSelect.value = data.provider;
+      
+      // Trigger toggle group visibility and options reload
+      toggleLlmKeyGroup(data.provider);
+      
+      modelSelect.value = data.model;
+      keyInput.value = data.api_key;
+      
+      statusSpan.textContent = currentLanguage === 'ar' ? "تم التحميل بنجاح" : "Configuration loaded";
+      statusSpan.style.color = "var(--primary)";
+    } else {
+      throw new Error("HTTP error loading settings");
+    }
+  } catch (err) {
+    console.warn("RAG server settings offline. Fallback to default rule-based templates.", err);
+    statusSpan.textContent = currentLanguage === 'ar' ? "وضع عدم الاتصال بالخادم" : "Local mode active";
+    statusSpan.style.color = "var(--slate-400)";
+    
+    providerSelect.value = "offline";
+    toggleLlmKeyGroup("offline");
+  }
+}
+
+function toggleLlmKeyGroup(provider) {
+  const keyGroup = document.getElementById('llm-key-group');
+  const modelGroup = document.getElementById('llm-model-group');
+  if (!keyGroup) return;
+  
+  if (provider === 'offline') {
+    keyGroup.style.display = 'none';
+    modelGroup.style.display = 'none';
+  } else {
+    keyGroup.style.display = 'block';
+    modelGroup.style.display = 'block';
+    
+    const modelSelect = document.getElementById('llm-model-select');
+    if (modelSelect) {
+      modelSelect.innerHTML = "";
+      if (provider === 'gemini') {
+        modelSelect.innerHTML = `
+          <option value="gemini-1.5-flash">gemini-1.5-flash (Fast & Optimized)</option>
+          <option value="gemini-1.5-pro">gemini-1.5-pro (Advanced Reasoning)</option>
+        `;
+      } else if (provider === 'openai') {
+        modelSelect.innerHTML = `
+          <option value="gpt-4o-mini">gpt-4o-mini (Rapid & Cost-Effective)</option>
+          <option value="gpt-4o">gpt-4o (Premium Performance)</option>
+        `;
+      }
+    }
+  }
+}
+
+async function saveLlmSettings() {
+  const providerSelect = document.getElementById('llm-provider-select');
+  const modelSelect = document.getElementById('llm-model-select');
+  const keyInput = document.getElementById('llm-api-key-input');
+  const statusSpan = document.getElementById('llm-settings-status');
+
+  if (!providerSelect || !keyInput) return;
+
+  statusSpan.textContent = currentLanguage === 'ar' ? "جاري الحفظ..." : "Saving...";
+  statusSpan.style.color = "var(--slate-500)";
+
+  const provider = providerSelect.value;
+  const model = modelSelect.value;
+  const apiKey = keyInput.value;
+
+  try {
+    const response = await fetch('/api/settings/llm', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        provider: provider,
+        api_key: apiKey,
+        model: model
+      })
+    });
+
+    if (response.ok) {
+      statusSpan.textContent = currentLanguage === 'ar' ? "تم الحفظ بنجاح!" : "Configuration saved successfully!";
+      statusSpan.style.color = "var(--primary)";
+      
+      setTimeout(loadLlmSettings, 1000);
+    } else {
+      const errData = await response.json();
+      throw new Error(errData.detail || "HTTP error saving");
+    }
+  } catch (err) {
+    console.error("Error saving LLM settings:", err);
+    statusSpan.textContent = currentLanguage === 'ar' ? "فشل الحفظ: الخادم غير متصل" : "Save failed: Server offline";
+    statusSpan.style.color = "var(--red-text)";
+  }
 }
 
 // Global window layout integrations
