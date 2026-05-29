@@ -4,19 +4,26 @@
 #     "fastapi",
 #     "uvicorn",
 #     "edge-tts",
+#     "pdfplumber",
+#     "python-docx",
+#     "python-multipart"
 # ]
 # ///
 
 import asyncio
 import re
+import os
+import shutil
 import xml.etree.ElementTree as ET
-from typing import Optional
-from fastapi import FastAPI, Query, HTTPException
+from typing import Optional, List
+from fastapi import FastAPI, Query, HTTPException, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from fastapi.staticfiles import StaticFiles
 import edge_tts
+from rag_engine import rag_engine, KB_DIR
+
 
 app = FastAPI(title="Retail Sales Pro - High-Fidelity SSML TTS Server")
 
@@ -179,6 +186,113 @@ async def post_tts(request: TTSRequest):
         stream_tts_chunks(text, voice, rate, pitch),
         media_type="audio/mpeg"
     )
+
+@app.on_event("startup")
+def startup_event():
+    print("[Server] Initializing RAG Engine and Indexing Documents...")
+    try:
+        rag_engine.rebuild_index()
+        print("[Server] RAG Engine ready and loaded successfully.")
+    except Exception as e:
+        print(f"[Server] Failed to initialize RAG: {e}")
+
+class CoachRequest(BaseModel):
+    text: str
+    personality: str
+    lang: str = "en"
+
+@app.post("/api/coach")
+def api_coach(req: CoachRequest):
+    try:
+        res = rag_engine.generate_response(req.text, req.personality, req.lang)
+        if not res:
+            return {"status": "no_match", "message": "No relevant document found."}
+        return {"status": "success", **res}
+    except Exception as e:
+        print(f"[API] RAG coach error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/kb/documents")
+def get_kb_documents():
+    if not os.path.exists(KB_DIR):
+        return []
+    
+    docs = []
+    # Scan directory for real files
+    for idx, filename in enumerate(os.listdir(KB_DIR)):
+        path = os.path.join(KB_DIR, filename)
+        if not os.path.isfile(path):
+            continue
+            
+        stat = os.stat(path)
+        size_bytes = stat.st_size
+        if size_bytes < 1024:
+            size_str = f"{size_bytes} B"
+        elif size_bytes < 1024 * 1024:
+            size_str = f"{size_bytes / 1024:.1f} KB"
+        else:
+            size_str = f"{size_bytes / (1024 * 1024):.1f} MB"
+            
+        ext = os.path.splitext(filename)[1].lower()
+        if ext == ".pdf":
+            doc_type = "Manual" if "دليل" in filename or "manual" in filename.lower() else "Strategy"
+        elif ext in (".docx", ".doc"):
+            doc_type = "Manual"
+        else:
+            doc_type = "Scripts"
+            
+        from datetime import datetime
+        mtime = datetime.fromtimestamp(stat.st_mtime)
+        updated_str = mtime.strftime("%d %b %Y, %H:%M")
+        
+        lang = "ARABIC" if any(c in filename for c in ["أ", "ب", "ت", "ج", "د", "ر", "س", "ش", "ع", "ق", "ك", "ل", "م", "ن", "ه", "و", "ي", "دليل", "مبيعات"]) else "ENGLISH"
+        
+        docs.append({
+            "id": idx + 1,
+            "name": filename,
+            "size": size_str,
+            "type": doc_type,
+            "status": "INDEXED",
+            "updated": updated_str,
+            "language": lang
+        })
+    return docs
+
+@app.post("/api/kb/upload")
+async def upload_kb_document(file: UploadFile = File(...)):
+    if not os.path.exists(KB_DIR):
+        os.makedirs(KB_DIR)
+        
+    filename = os.path.basename(file.filename)
+    dest_path = os.path.join(KB_DIR, filename)
+    
+    try:
+        with open(dest_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+            
+        # Trigger re-indexing
+        rag_engine.rebuild_index()
+        return {"status": "success", "message": f"Successfully uploaded and indexed {filename}."}
+    except Exception as e:
+        print(f"[API] Error uploading file: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.delete("/api/kb/documents/{name}")
+def delete_kb_document(name: str):
+    filename = os.path.basename(name)
+    file_path = os.path.join(KB_DIR, filename)
+    
+    if not os.path.exists(file_path):
+        raise HTTPException(status_code=404, detail="Document not found.")
+        
+    try:
+        os.remove(file_path)
+        # Trigger re-indexing
+        rag_engine.rebuild_index()
+        return {"status": "success", "message": f"Successfully deleted {filename}."}
+    except Exception as e:
+        print(f"[API] Error deleting file: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/health")
 def health():
