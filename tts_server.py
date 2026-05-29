@@ -22,7 +22,37 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from fastapi.staticfiles import StaticFiles
 import edge_tts
+import json
 from rag_engine import rag_engine, KB_DIR
+
+LLM_CONFIG_FILE = "llm_config.json"
+
+def load_llm_config():
+    if os.path.exists(LLM_CONFIG_FILE):
+        try:
+            with open(LLM_CONFIG_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"[Server] Error reading LLM config: {e}")
+    return {
+        "provider": "offline",
+        "api_key": "",
+        "model": "gemini-1.5-flash"
+    }
+
+def save_llm_config(config):
+    try:
+        with open(LLM_CONFIG_FILE, "w", encoding="utf-8") as f:
+            json.dump(config, f, indent=2)
+        return True
+    except Exception as e:
+        print(f"[Server] Error saving LLM config: {e}")
+        return False
+
+class LLMConfig(BaseModel):
+    provider: str
+    api_key: str
+    model: str
 
 
 app = FastAPI(title="Retail Sales Pro - High-Fidelity SSML TTS Server")
@@ -211,6 +241,45 @@ def api_coach(req: CoachRequest):
     except Exception as e:
         print(f"[API] RAG coach error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/settings/llm")
+def get_settings_llm():
+    config = load_llm_config()
+    key = config.get("api_key", "")
+    masked_key = ""
+    if key:
+        if len(key) > 8:
+            masked_key = key[:4] + "*" * (len(key) - 8) + key[-4:]
+        else:
+            masked_key = "****"
+            
+    return {
+        "provider": config.get("provider", "offline"),
+        "api_key": masked_key,
+        "model": config.get("model", "gemini-1.5-flash")
+    }
+
+@app.post("/api/settings/llm")
+def post_settings_llm(config: LLMConfig):
+    saved_config = load_llm_config()
+    incoming_key = config.api_key.strip()
+    
+    if "*" in incoming_key or incoming_key == "****" or not incoming_key:
+        key_to_save = saved_config.get("api_key", "")
+    else:
+        key_to_save = incoming_key
+        
+    config_dict = {
+        "provider": config.provider,
+        "api_key": key_to_save,
+        "model": config.model
+    }
+    
+    if save_llm_config(config_dict):
+        rag_engine.reload_llm_config()
+        return {"status": "success", "message": "LLM Configuration saved successfully."}
+    else:
+        raise HTTPException(status_code=500, detail="Failed to save LLM configuration.")
 
 @app.get("/api/kb/documents")
 def get_kb_documents():
